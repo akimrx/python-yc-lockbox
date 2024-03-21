@@ -1,0 +1,49 @@
+[tool.black]
+line-length = 119
+target-version = ['py310']
+include = '\.pyi?$'
+
+
+[tool.pytest.ini_options]
+pythonpath = [".", "yc_lockbox"]
+asyncio_mode = "auto"
+filterwarnings = [
+  "ignore:`json_encoders` is deprecated",
+  "ignore:The event_loop fixture provided by pytest-asyncio has been redefined",
+  "ignore:Pydantic V1 style `@validator` validators are deprecated.",
+]
+
+[tool.coverage.run]
+# omit = []
+
+[tool.flake8]
+max-complexity = 15
+max-line-length = 119
+
+[tool.semantic_release]
+version_variables = ["yc_lockbox/__init__.py:__version__"]
+remote.type = "github"
+commit_author = "name <email>"
+commit_message = "release: 🚀 auto version bump {version}"
+
+[tool.semantic_release.commit_parser_options]
+allowed_types = [
+  "build",
+  "release",
+  "chore",
+  "ci",
+  "docs",
+  "feat",
+  "fix",
+  "perf",
+  "style",
+  "refactor",
+  "test",
+]
+minor_types = ["feat"]
+patch_types = ["fix", "perf", "refactor"]
+
+[tool.semantic_release.branches.main]
+match = "(main|master)"
+prerelease_token = "rc"
+prerelease = false

@@ -1,2 +1,2 @@
 # python-yc-lockbox
-Client of Yandex.Cloud Lockbox (secrets vault)
+Client for Yandex.Cloud Lockbox (secrets vault)
