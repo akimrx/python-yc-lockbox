@@ -71,6 +71,12 @@ class SecretPayloadEntry(BaseDomainModel):
         return self.binary_value.get_secret_value()
 
 
+class INewSecretPayloadEntry(BaseUpsertModel):
+    key: str
+    text_value: str | None = Field(None, alias="textValue")
+    binary_value: str | None = Field(None, alias="binaryValue")
+
+
 class INewSecret(BaseUpsertModel):
     folder_id: str = Field(..., alias="folderId")
     name: str | None = None
@@ -78,7 +84,7 @@ class INewSecret(BaseUpsertModel):
     labels: dict[str, str] | None = {}
     kms_key_id: str | None = Field(None, alias="kmsKeyId")
     version_description: str | None = Field(None, alias="versionDescription")
-    version_payload_entries: list[SecretPayloadEntry] = Field(..., alias="versionPayloadEntries")
+    version_payload_entries: list[INewSecretPayloadEntry] = Field(..., alias="versionPayloadEntries")
     deletion_protection: bool = Field(False, alias="deletionProtection")
 
 
@@ -93,7 +99,7 @@ class IUpdateSecret(BaseUpsertModel):
 class INewSecretVersion(BaseUpsertModel):
     description: str | None = None
     base_version_id: str | None = Field(None, alias="baseVersionId")
-    payload_entries: list[SecretPayloadEntry] = Field(..., alias="payloadEntries")
+    payload_entries: list[INewSecretPayloadEntry] = Field(..., alias="payloadEntries")
 
     model_config: ConfigDict = ConfigDict(extra="forbid", populate_by_name=True)
 

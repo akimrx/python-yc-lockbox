@@ -25,11 +25,11 @@ SOFTWARE.
 """
 
 from yc_lockbox._lockbox import YandexLockboxClient
-from yc_lockbox._models import Secret, SecretPayloadEntry, INewSecret, INewSecretVersion, IUpdateSecret
+from yc_lockbox._models import Secret, INewSecretPayloadEntry, INewSecret, INewSecretVersion, IUpdateSecret
 
 __version__ = "0.0.1"
 __author__ = "Akim Faskhutdinov"
 __author_email__ = "akimstrong@yandex.ru"
 __license__ = "MIT"
 
-__all__ = ["Secret", "SecretPayloadEntry", "INewSecret", "INewSecretVersion", "IUpdateSecret", "YandexLockboxClient"]
+__all__ = ["Secret", "INewSecretPayloadEntry", "INewSecret", "INewSecretVersion", "IUpdateSecret", "YandexLockboxClient"]
