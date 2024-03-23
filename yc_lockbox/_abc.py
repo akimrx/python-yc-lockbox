@@ -13,9 +13,9 @@ T = TypeVar("T")
 
 @enum.unique
 class CredentialsType(str, enum.Enum):
-    IAM_TOKEN = "IAM_TOKEN"
-    OAUTH_TOKEN = "OAUTH_TOKEN"
-    SERVICE_ACCOUNT = "SERVICE_ACCOUNT"
+    IAM_TOKEN = "IAM_TOKEN"  # nosec B105
+    OAUTH_TOKEN = "OAUTH_TOKEN"  # nosec B105
+    SERVICE_ACCOUNT = "SERVICE_ACCOUNT"  # nosec B105
 
     @staticmethod
     def allowed_types(stringify: bool = False) -> list | str:

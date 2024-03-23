@@ -32,4 +32,11 @@ __author__ = "Akim Faskhutdinov"
 __author_email__ = "akimstrong@yandex.ru"
 __license__ = "MIT"
 
-__all__ = ["Secret", "INewSecretPayloadEntry", "INewSecret", "INewSecretVersion", "IUpdateSecret", "YandexLockboxClient"]
+__all__ = [
+    "Secret",
+    "INewSecretPayloadEntry",
+    "INewSecret",
+    "INewSecretVersion",
+    "IUpdateSecret",
+    "YandexLockboxClient",
+]

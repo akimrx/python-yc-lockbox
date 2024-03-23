@@ -114,7 +114,7 @@ class YandexLockboxClient(AbstractYandexLockboxClient):
                 "This method works only with query string parameters. Check keyword arguments to resolve it."
             )
 
-        next_token = ""
+        next_token = ""  # nosec B105
 
         while next_token is not None:
             # There could potentially be a problem if some request doesn't have a 'pageToken' in query string params.
