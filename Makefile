@@ -71,4 +71,4 @@ install: clean
 
 release: build
 	@make build
-	@echo "not implemented"
+	@python3 -m twine upload --repository pypi dist/*
