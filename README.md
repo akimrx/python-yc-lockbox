@@ -28,7 +28,7 @@ This client is  a simple library for working with **[Yandex Lockbox](https://clo
 **In the near future release:**
 
 * Async client implementation
-* Implement access bindings method and view operations
+* Implement access bindings methods and view operations
 * Tests
 
 
