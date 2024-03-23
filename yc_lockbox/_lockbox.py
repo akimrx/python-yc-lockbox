@@ -48,13 +48,18 @@ class YandexLockboxClient(AbstractYandexLockboxClient):
         lockbox = YandexLockboxClient("y0_AgAEXXXXXXXXXXXXXXXXXXXXXXXXX")  # OAuth or IAM token
 
         secret: Secret = lockbox.get_secret("e6xxxxxxxxxxxxxxxx")
+        print(secret.name, secret.status, secret.description)
+
         payload = secret.payload()
 
         try:
-            value = payload.get_entry("mykey")
+            value = payload["mykey"]
             print(value.reveal_text_value())
         except KeyError:
             print("Invalid key!")
+
+        print(payload.get("foo"))  # None if not exists without raising exception
+        entry = payload[0]  # similar to payload.entries[0]
 
     Authenticate via service account key::
 

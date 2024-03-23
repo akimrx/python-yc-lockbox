@@ -245,7 +245,7 @@ class AbstractYandexAuthClient(ABC):
 
         headers = {
             "typ": "JWT",
-            "alg": "PS256",
+            "alg": C.JWT_ALGORITHM,
             "kid": key_id,
         }
 
