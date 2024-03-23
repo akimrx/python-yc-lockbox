@@ -10,8 +10,8 @@ from yc_lockbox._models import (
     SecretVersion,
     SecretsList,
     SecretVersionsList,
-    YandexLockboxResponse,
-    YandexLockboxError,
+    Operation,
+    YandexCloudError,
     INewSecret,
     IUpdateSecret,
     INewSecretVersion,
@@ -141,134 +141,138 @@ class YandexLockboxClient(AbstractYandexLockboxClient):
                 item.inject_client(self)
                 yield item
 
-    def activate_secret(
-        self, secret_id: str, raise_for_status: bool = True
-    ) -> YandexLockboxResponse | YandexLockboxError:
+    def activate_secret(self, secret_id: str, raise_for_status: bool = True) -> Operation | YandexCloudError:
         """
         Activates the specified secret.
 
         :param secret_id: Secret indentifier.
-        :param raise_for_status: If set to ``False`` returns :class:`YandexLockboxError` instead throw exception.
+        :param raise_for_status: If set to ``False`` returns :class:`YandexCloudError` instead throw exception.
             Defaults to ``True``.
         """
         url = f"{self.lockbox_base_url}/secrets/{secret_id}:activate"
-        return self.adapter.request(
+        response = self.adapter.request(
             "POST",
             url,
             headers=self.auth_headers,
-            response_model=YandexLockboxResponse,
+            response_model=Operation,
             raise_for_status=raise_for_status,
         )
+        response.inject_client(self)
+        return response
 
     def add_secret_version(
         self, secret_id: str, version: INewSecretVersion, raise_for_status: bool = True
-    ) -> YandexLockboxResponse | YandexLockboxError:
+    ) -> Operation | YandexCloudError:
         """
         Adds new version based on a previous one.
 
         :param secret_id: Secret indentifier.
         :param version: A new version object.
-        :param raise_for_status: If set to ``False`` returns :class:`YandexLockboxError` instead throw exception.
+        :param raise_for_status: If set to ``False`` returns :class:`YandexCloudError` instead throw exception.
             Defaults to ``True``.
         """
         url = f"{self.lockbox_base_url}/secrets/{secret_id}:addVersion"
         payload = version.model_dump_json(by_alias=True, exclude_none=True)
-        return self.adapter.request(
+        response = self.adapter.request(
             "POST",
             url,
             headers=self.auth_headers,
             data=payload,
-            response_model=YandexLockboxResponse,
+            response_model=Operation,
             raise_for_status=raise_for_status,
         )
+        response.inject_client(self)
+        return response
 
-    def create_secret(
-        self, secret: INewSecret, raise_for_status: bool = True
-    ) -> YandexLockboxResponse | YandexLockboxError:
+    def create_secret(self, secret: INewSecret, raise_for_status: bool = True) -> Operation | YandexCloudError:
         """
         Creates a secret in the specified folder.
 
         :param secret: A new secret object.
-        :param raise_for_status: If set to ``False`` returns :class:`YandexLockboxError` instead throw exception.
+        :param raise_for_status: If set to ``False`` returns :class:`YandexCloudError` instead throw exception.
             Defaults to ``True``.
         """
         url = f"{self.lockbox_base_url}/secrets"
         payload = secret.model_dump_json(by_alias=True, exclude_none=True)
-        return self.adapter.request(
+        response = self.adapter.request(
             "POST",
             url,
             headers=self.auth_headers,
             data=payload,
-            response_model=YandexLockboxResponse,
+            response_model=Operation,
             raise_for_status=raise_for_status,
         )
+        response.inject_client(self)
+        return response
 
     def cancel_secret_version_destruction(
         self, secret_id: str, version_id: str, raise_for_status: bool = True
-    ) -> YandexLockboxResponse | YandexLockboxError:
+    ) -> Operation | YandexCloudError:
         """
         Cancels previously scheduled version destruction, if the version hasn't been destroyed yet.
 
         :param secret_id: Secret indentifier.
         :param version_id: Secret version id to cancel destruction.
-        :param raise_for_status: If set to ``False`` returns :class:`YandexLockboxError` instead throw exception.
+        :param raise_for_status: If set to ``False`` returns :class:`YandexCloudError` instead throw exception.
             Defaults to ``True``.
         """
         url = f"{self.lockbox_base_url}/secrets/{secret_id}:cancelVersionDestruction"
         payload = {"versionId": version_id}
-        return self.adapter.request(
+        response = self.adapter.request(
             "POST",
             url,
             headers=self.auth_headers,
             json=payload,
-            response_model=YandexLockboxResponse,
+            response_model=Operation,
             raise_for_status=raise_for_status,
         )
+        response.inject_client(self)
+        return response
 
-    def deactivate_secret(
-        self, secret_id: str, raise_for_status: bool = True
-    ) -> YandexLockboxResponse | YandexLockboxError:
+    def deactivate_secret(self, secret_id: str, raise_for_status: bool = True) -> Operation | YandexCloudError:
         """
         Deactivate a secret.
 
         :param secret_id: Secret indentifier.
-        :param raise_for_status: If set to ``False`` returns :class:`YandexLockboxError` instead throw exception.
+        :param raise_for_status: If set to ``False`` returns :class:`YandexCloudError` instead throw exception.
             Defaults to ``True``.
         """
         url = f"{self.lockbox_base_url}/secrets/{secret_id}:deactivate"
-        return self.adapter.request(
+        response = self.adapter.request(
             "POST",
             url,
             headers=self.auth_headers,
-            response_model=YandexLockboxResponse,
+            response_model=Operation,
             raise_for_status=raise_for_status,
         )
+        response.inject_client(self)
+        return response
 
-    def delete_secret(
-        self, secret_id: str, raise_for_status: bool = True
-    ) -> YandexLockboxResponse | YandexLockboxError:
+    def delete_secret(self, secret_id: str, raise_for_status: bool = True) -> Operation | YandexCloudError:
         """
         Deletes the specified secret.
 
         :param secret_id: Secret indentifier.
-        :param raise_for_status: If set to ``False`` returns :class:`YandexLockboxError` instead throw exception.
+        :param raise_for_status: If set to ``False`` returns :class:`YandexCloudError` instead throw exception.
             Defaults to ``True``.
         """
         url = f"{self.lockbox_base_url}/secrets/{secret_id}"
-        return self.adapter.request(
+        response = self.adapter.request(
             "DELETE",
             url,
             headers=self.auth_headers,
-            response_model=YandexLockboxResponse,
+            response_model=Operation,
             raise_for_status=raise_for_status,
         )
+        response.inject_client(self)
+        return response
 
-    def get_secret(self, secret_id: str, raise_for_status: bool = True) -> Secret | YandexLockboxError:
+    def get_secret(self, secret_id: str, raise_for_status: bool = True) -> Secret | YandexCloudError:
         """
         Get lockbox secret by ID.
 
         :param secret_id: Secret identifier.
-        :param raise_for_status: If set to ``False`` returns :class:`YandexLockboxError` instead throw exception.
+        :param raise_for_status: If set to ``False`` returns :class:`YandexCloudError` instead throw exception.
             Defaults to ``True``.
         """
         url = f"{self.lockbox_base_url}/secrets/{secret_id}"
@@ -287,13 +291,13 @@ class YandexLockboxClient(AbstractYandexLockboxClient):
         secret_id: str,
         version_id: str | None = None,
         raise_for_status: bool = True,
-    ) -> SecretPayload | YandexLockboxError:
+    ) -> SecretPayload | YandexCloudError:
         """
         Get lockbox secret payload by ID and optional version.
 
         :param secret_id: Secret identifier.
         :param version_id: Secret version. Optional.
-        :param raise_for_status: If set to ``False`` returns :class:`YandexLockboxError` instead throw exception.
+        :param raise_for_status: If set to ``False`` returns :class:`YandexCloudError` instead throw exception.
             Defaults to ``True``.
         """
         url = f"{self.payload_lockbox_base_url}/secrets/{secret_id}/payload"
@@ -314,7 +318,7 @@ class YandexLockboxClient(AbstractYandexLockboxClient):
         page_token: str | None = None,
         raise_for_status: bool = True,
         iterator: bool = False,
-    ) -> SecretsList | Iterator[Secret] | YandexLockboxError:
+    ) -> SecretsList | Iterator[Secret] | YandexCloudError:
         """
         Retrieves the list of secrets in the specified folder.
 
@@ -362,7 +366,7 @@ class YandexLockboxClient(AbstractYandexLockboxClient):
         page_token: str | None = None,
         raise_for_status: bool = True,
         iterator: bool = False,
-    ) -> SecretVersionsList | Iterator[SecretVersion] | YandexLockboxError:
+    ) -> SecretVersionsList | Iterator[SecretVersion] | YandexCloudError:
         """
         Retrieves the list of versions of the specified secret.
 
@@ -397,7 +401,7 @@ class YandexLockboxClient(AbstractYandexLockboxClient):
 
     def schedule_secret_version_destruction(
         self, secret_id: str, version_id: str, pending_period: int = 604800, raise_for_status: bool = True
-    ) -> YandexLockboxResponse | YandexLockboxError:
+    ) -> Operation | YandexCloudError:
         """
         Schedules the specified version for destruction.
         Scheduled destruction can be cancelled with the :func:`cancel_secret_version_destruction()` method.
@@ -406,7 +410,7 @@ class YandexLockboxClient(AbstractYandexLockboxClient):
         :param version_id: ID of the version to be destroyed.
         :param pending_period: Time interval in seconds between the version destruction request and actual destruction.
             Default value: ``604800`` (i.e. 7 days).
-        :param raise_for_status: If set to ``False`` returns :class:`YandexLockboxError` instead throw exception.
+        :param raise_for_status: If set to ``False`` returns :class:`YandexCloudError` instead throw exception.
             Defaults to ``True``.
         """
         if isinstance(pending_period, int):
@@ -420,14 +424,16 @@ class YandexLockboxClient(AbstractYandexLockboxClient):
 
         url = f"{self.lockbox_base_url}/secrets/{secret_id}:scheduleVersionDestruction"
         payload = {"versionId": version_id, "pendingPeriod": pending_period}
-        return self.adapter.request(
+        response = self.adapter.request(
             "POST",
             url,
             headers=self.auth_headers,
             json=payload,
-            response_model=YandexLockboxResponse,
+            response_model=Operation,
             raise_for_status=raise_for_status,
         )
+        response.inject_client(self)
+        return response
 
     # TODO: implement
     def set_secret_access_bindings(self, *args, **kwargs):
@@ -435,7 +441,7 @@ class YandexLockboxClient(AbstractYandexLockboxClient):
 
     def update_secret(
         self, secret_id: str, data: IUpdateSecret, raise_for_status: bool = True
-    ) -> YandexLockboxResponse | YandexLockboxError:
+    ) -> Operation | YandexCloudError:
         """
         Updates the specified secret.
 
@@ -448,19 +454,21 @@ class YandexLockboxClient(AbstractYandexLockboxClient):
             The default value for most fields is null or 0.
             If ``updateMask`` is not sent in the request, all fields values will be updated.
             Fields specified in the request will be updated to provided values. The rest of the fields will be reset to the default.
-        :param raise_for_status: If set to ``False`` returns :class:`YandexLockboxError` instead throw exception.
+        :param raise_for_status: If set to ``False`` returns :class:`YandexCloudError` instead throw exception.
             Defaults to ``True``.
         """
         url = f"{self.lockbox_base_url}/secrets/{secret_id}"
         payload = data.model_dump_json(by_alias=True)
-        return self.adapter.request(
+        response = self.adapter.request(
             "PATCH",
             url,
             headers=self.auth_headers,
             data=payload,
-            response_model=YandexLockboxResponse,
+            response_model=Operation,
             raise_for_status=raise_for_status,
         )
+        response.inject_client(self)
+        return response
 
     # TODO: implement
     def update_secret_access_bindings(self, *args, **kwargs):

@@ -3,7 +3,7 @@ import requests
 from typing import Any
 
 from yc_lockbox._abc import AbstractHTTPAdapter
-from yc_lockbox._models import YandexLockboxError
+from yc_lockbox._models import YandexCloudError
 from yc_lockbox._types import T
 
 logger = logging.getLogger(__name__)
@@ -78,7 +78,7 @@ class HTTPAdapter(AbstractHTTPAdapter):
             if raise_for_status:
                 response.raise_for_status()
 
-            return __class__.parse_response(response, response_model=YandexLockboxError)
+            return __class__.parse_response(response, response_model=YandexCloudError)
 
         return __class__.parse_response(response, response_model=response_model)
 
@@ -161,6 +161,6 @@ class AsyncHTTPAdapter(AbstractHTTPAdapter):
                     if raise_for_status:
                         response.raise_for_status()
 
-                    return await __class__.parse_response(response, response_model=YandexLockboxError)
+                    return await __class__.parse_response(response, response_model=YandexCloudError)
 
                 return await __class__.parse_response(response, response_model=response_model)
