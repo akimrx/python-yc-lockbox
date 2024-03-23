@@ -133,20 +133,32 @@ print(entry.reveal_text_value())  # similar to entry.text_value.get_secret_value
 ### Add new version of secret
 
 ```python
-from yc_lockbox import YandexLockboxClient, Secret, INewSecretVersion
+from yc_lockbox import YandexLockboxClient, Secret, INewSecretVersion, INewSecretPayloadEntry
 
 lockbox = YandexLockboxClient("oauth_or_iam_token")
 
 secret: Secret = lockbox.get_secret("e6qxxxxxxxxxxxx")
 
-secret.add_version([
-    INewSecretPayloadEntry(key="secret_entry_1", text_value="secret_entry_text_value"),
-    INewSecretPayloadEntry(key="secret_entry_2", binary_value="secret_entry_binary_value"),
-])
+secret.add_version(
+    INewSecretVersion(
+        description="a new version",
+        base_version_id=secret.current_version.id,
+        payload_entries= [
+            INewSecretPayloadEntry(key="secret_entry_1", text_value="secret_entry_text_value"),
+            INewSecretPayloadEntry(key="secret_entry_2", binary_value="secret_entry_binary_value"),
+        ]
+    )
+)
 
 # alternative
-lockbox.add_secret_version("secret_id", version=[INewSecretPayloadEntry(...), INewSecretPayloadEntry(...)])
-
+lockbox.add_secret_version(
+    "secret_id",
+    version=INewSecretVersion(
+        description="a new version",
+        base_version_id=secret.current_version.id,
+        payload_entries=[INewSecretPayloadEntry(...), INewSecretPayloadEntry(...)]
+    )
+)
 ```
 
 
