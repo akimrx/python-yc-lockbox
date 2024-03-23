@@ -3,13 +3,19 @@
 This client is  a simple library for working with **[Yandex Lockbox](https://cloud.yandex.ru/en/docs/lockbox/)** over REST API, simplifying work with secrets and allowing you to work with them in the OOP paradigm.
 
 
+**Supported Python versions**:
+
+* 3.10
+* 3.11
+* 3.12
+
+
 **Currently, the following operations are not supported by the library:**
 
 * List secret access bindings
 * Set secret access bindings
 * Update secret access bindings
 * List secret operations
-
 
 
 ## Install
@@ -134,12 +140,14 @@ lockbox = YandexLockboxClient("oauth_or_iam_token")
 
 
 for secret in lockbox.list_secrets(folder_id="b1xxxxxxxxxx", iterator=True):
-    print(secret.deactivate())
-    print(secret.activate())
+    print(secret.name, secret.status)
+
+    secret.deactivate()
+    secret.activate()
 
     for version in secret.list_versions(iterator=True):
         if version.id != secret.current_version.id:
-            print(version.schedule_version_destruction())
-            print(version.cancel_version_destruction())
+            version.schedule_version_destruction()
+            version.cancel_version_destruction()
 
 ```
