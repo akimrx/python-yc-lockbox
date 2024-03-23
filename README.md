@@ -23,7 +23,7 @@ This client is  a simple library for working with **[Yandex Lockbox](https://clo
 Installing with PIP:
 
 ```
-pip3 install yc-lockbox
+pip install yc-lockbox
 ```
 
 Also, you can install from source with:
@@ -103,7 +103,11 @@ lockbox = YandexLockboxClient("oauth_or_iam_token")
 secret: Secret = lockbox.get_secret("e6qxxxxxxxxxx")
 print(secret.status, secret.name)
 
-payload = secret.payload(version_id=secret.current_version.id)  # version_id is optional, by default using current version
+payload = secret.payload(version_id=secret.current_version.id)  # id is optional, by default using current version
+print(payload.entries)  # list of SecretPayloadEntry objects
+
+# Direct access
+
 entry = payload["secret_entry_1"]  # or payload.get("secret_entry_1")
 
 print(entry.text_value)  # return MASKED value like ***********
