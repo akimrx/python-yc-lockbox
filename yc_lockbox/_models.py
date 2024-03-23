@@ -108,20 +108,25 @@ class SecretPayload(BaseDomainModel):
     version_id: str = Field(..., alias="versionId")
     entries: list[SecretPayloadEntry]
 
-    def get_entry(self, key: str) -> SecretPayloadEntry | None:
+    def __getitem__(self, key: str) -> SecretPayloadEntry | None:
+        """Get entry by key. Dictionary like."""
+        value: SecretPayloadEntry | None = self.get(key, default=None)
+
+        if value is None:
+            entries = ", ".join(map(lambda entry: entry.key, self.entries))
+            raise KeyError(f"Entry with name {key} not exists. Available entries: {entries}")
+
+        return value
+
+    def get(self, key: str, default: Any = None) -> SecretPayloadEntry | None:
         """
         Get entry object from payload.
 
         :param key: Entry key (name).
+        :param default: Default return value if key not exists.
         :raises KeyError: When key not exists in payload.
         """
-        found = next(filter(lambda entry: entry.key == key, self.entries), None)
-
-        if found is None:
-            entries = ", ".join(map(lambda entry: entry.key, self.entries))
-            raise KeyError(f"Entry with name {key} not exists. Available entries: {entries}")
-
-        return found
+        return next(filter(lambda entry: entry.key == key, self.entries), default)
 
 
 class SecretVersion(BaseDomainModel):

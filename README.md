@@ -1,2 +1,145 @@
-# python-yc-lockbox
-Client for Yandex.Cloud Lockbox (secrets vault)
+# Yandex Lockbox Client
+
+This client is  a simple library for working with **[Yandex Lockbox](https://cloud.yandex.ru/en/docs/lockbox/)** over REST API, simplifying work with secrets and allowing you to work with them in the OOP paradigm.
+
+
+**Currently, the following operations are not supported by the library:**
+
+* List secret access bindings
+* Set secret access bindings
+* Update secret access bindings
+* List secret operations
+
+
+
+## Install
+
+Installing with PIP:
+
+```
+pip3 install yc-lockbox
+```
+
+Also, you can install from source with:
+
+```
+git clone https://github.com/akimrx/python-yc-lockbox
+cd python-yc-lockbox 
+make install
+```
+
+
+## Usage
+
+
+* **Authenticate via your [OAuth token](https://oauth.yandex.com/authorize?response_type=token&client_id=1a6990aa636648e9b2ef855fa7bec2fb)**
+
+```python
+from yc_lockbox import YandexLockboxClient
+
+lockbox = YandexLockboxClient("y0_xxxxxxxxxxxx")
+```
+
+* **Authenticate via [IAM token](https://cloud.yandex.com/en/docs/iam/operations/iam-token/create)**
+
+> If you pass a IAM token as credentials, you need to take care of the freshness of the token yourself.
+
+```python
+from yc_lockbox import YandexLockboxClient
+
+lockbox = YandexLockboxClient("t1.xxxxxx.xxxxxxx")
+```
+
+
+
+* **Authenticate using [service account key](https://cloud.yandex.com/en/docs/iam/operations/authorized-key/create#cli_1)**
+
+```python
+import json
+from yc_lockbox import YandexLockboxClient
+
+with open("/path/to/key.json", "r") as keyfile:
+    credentials = keyfile.read()
+
+lockbox = YandexLockboxClient(credentials)
+```
+
+### Create a new secret
+
+```python
+from yc_lockbox import YandexLockboxClient, INewSecret, INewSecretPayloadEntry
+
+lockbox = YandexLockboxClient("oauth_or_iam_token")
+
+my_secret = lockbox.create_secret(
+    INewSecret(
+    folder_id="b1xxxxxxxxxxxxxx",
+    name="my-secret",
+    version_payload_entries=[
+        INewSecretPayloadEntry(key="secret_entry_1", text_value="secret_entry_text_value"),
+        INewSecretPayloadEntry(key="secret_entry_2", binary_value="secret_entry_binary_value"),
+    ],
+    )
+)
+
+if my_secret.done:
+    print(my_secret.metadata.get("secretId"))
+```
+
+
+### Get secret from Lockbox
+
+```python
+from yc_lockbox import YandexLockboxClient, Secret
+
+lockbox = YandexLockboxClient("oauth_or_iam_token")
+
+secret: Secret = lockbox.get_secret("e6qxxxxxxxxxx")
+print(secret.status, secret.name)
+
+payload = secret.payload(version_id=secret.current_version.id)  # version_id is optional, by default using current version
+entry = payload["secret_entry_1"]  # or payload.get("secret_entry_1")
+
+print(entry.text_value)  # return MASKED value like ***********
+print(entry.reveal_text_value())  # similar to entry.text_value.get_secret_value()
+```
+
+
+### Add new version of secret
+
+```python
+from yc_lockbox import YandexLockboxClient, Secret, INewSecretVersion
+
+lockbox = YandexLockboxClient("oauth_or_iam_token")
+
+secret: Secret = lockbox.get_secret("e6qxxxxxxxxxxxx")
+
+secret.add_version([
+    INewSecretPayloadEntry(key="secret_entry_1", text_value="secret_entry_text_value"),
+    INewSecretPayloadEntry(key="secret_entry_2", binary_value="secret_entry_binary_value"),
+])
+
+# alternative
+lockbox.add_secret_version("secret_id", version=[INewSecretPayloadEntry(...), INewSecretPayloadEntry(...)])
+
+```
+
+
+### Other operations with secret
+
+```python
+from yc_lockbox import YandexLockboxClient
+
+lockbox = YandexLockboxClient("oauth_or_iam_token")
+
+
+for secret in lockbox.list_secrets(folder_id="b1xxxxxxxxxx", iterator=True):
+    print(secret.deactivate())
+    print(secret.activate())
+
+    for version in secret.list_versions(iterator=True):
+        if version.id != secret.current_version.id:
+            print(version.schedule_version_destruction())
+            print(version.cancel_version_destruction())
+
+```

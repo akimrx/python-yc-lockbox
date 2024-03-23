@@ -75,7 +75,7 @@ class YandexLockboxClient(AbstractYandexLockboxClient):
         credentials,
         *,
         auth_client: Optional[Type[AbstractYandexAuthClient]] = YandexAuthClient,
-        adapter: AbstractHTTPAdapter = HTTPAdapter,
+        adapter: Optional[Type[AbstractHTTPAdapter]] = HTTPAdapter,
         lockbox_base_url: str | None = None,
         payload_lockbox_base_url: str | None = None,
     ) -> None:
