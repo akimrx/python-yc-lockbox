@@ -97,7 +97,7 @@ my_secret = lockbox.create_secret(
     name="my-secret",
     version_payload_entries=[
         INewSecretPayloadEntry(key="secret_entry_1", text_value="secret_entry_text_value"),
-        INewSecretPayloadEntry(key="secret_entry_2", binary_value="secret_entry_binary_value"),
+        INewSecretPayloadEntry(key="secret_entry_2", binary_value="secret_entry_binary_value".encode()),
     ],
     )
 )

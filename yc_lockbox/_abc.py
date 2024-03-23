@@ -5,7 +5,7 @@ import enum
 import yc_lockbox._constants as C
 
 from abc import ABC, abstractmethod
-from typing import Any, TypeVar, Union
+from typing import Any, TypeVar
 from yc_lockbox._exceptions import InvalidCredentials
 
 T = TypeVar("T")
@@ -44,7 +44,6 @@ class AbstractHTTPAdapter(ABC):
         headers: dict[str, Any] | None = None,
         response_model: T | None = None,
         raise_for_status: bool = True,
-        inject_client: Union["AbstractYandexLockboxClient", None] = None,
         **kwargs,
     ) -> Any:
         raise NotImplementedError
