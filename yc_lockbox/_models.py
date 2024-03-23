@@ -30,20 +30,22 @@ class BasePaginatedResponse(BaseDomainModel):
     next_page_token: str | None = Field(None, alias="nextPageToken")
 
 
-class YandexLockboxError(BaseDomainModel):
+class YandexCloudError(BaseDomainModel):
     code: int
     message: str | None = None
     details: Any = None
 
 
-class YandexLockboxResponse(BaseDomainModel):
-    id: str | None = None
+class Operation(BaseDomainModel):
+    id: str
     done: bool = False
     description: str | None = None
     created_by: str | None = Field(None, alias="createdBy")
     created_at: datetime | None = Field(None, alias="createdAt")
     modified_at: datetime | None = Field(None, alias="modifiedAt")
-    metadata: dict[str, str] | None = None
+    metadata: dict[str, str] | Any = None
+    response: Any = None
+    error: Any = None
 
 
 class IamTokenResponse(BaseDomainModel):
@@ -150,17 +152,15 @@ class SecretVersion(BaseDomainModel):
     # there may be compatibility issues with the subquery
     # in different modes (synchronous, asynchronous)
 
-    def cancel_version_destruction(self, **kwargs) -> YandexLockboxResponse | YandexLockboxError:
+    def cancel_version_destruction(self, **kwargs) -> Operation | YandexCloudError:
         """Shortcut for cancel destruction for this version."""
         return self.client.cancel_secret_version_destruction(self.secret_id, self.id, **kwargs)
 
-    def payload(self, **kwargs) -> SecretPayload | YandexLockboxError:
+    def payload(self, **kwargs) -> SecretPayload | YandexCloudError:
         """Get payload from the current secret.."""
         return self.client.get_secret_payload(self.secret_id, self.id, **kwargs)
 
-    def schedule_version_destruction(
-        self, pending_period: int = 604800, **kwargs
-    ) -> YandexLockboxResponse | YandexLockboxError:
+    def schedule_version_destruction(self, pending_period: int = 604800, **kwargs) -> Operation | YandexCloudError:
         """Shortcut for schedule descruction for this version."""
         return self.client.schedule_secret_version_destruction(self.secret_id, self.id, pending_period, **kwargs)
 
@@ -177,23 +177,23 @@ class Secret(BaseDomainModel):
     deletion_protection: bool = Field(..., alias="deletionProtection")
     labels: dict[str, str] | None = None
 
-    def activate(self, **kwargs) -> YandexLockboxResponse | YandexLockboxError:
+    def activate(self, **kwargs) -> Operation | YandexCloudError:
         """Shortcut for activate the current secret."""
         return self.client.activate_secret(self.id, **kwargs)
 
-    def add_version(self, version: INewSecretVersion, **kwargs) -> YandexLockboxResponse | YandexLockboxError:
+    def add_version(self, version: INewSecretVersion, **kwargs) -> Operation | YandexCloudError:
         """Shortcut for add a new version to the current secret."""
         return self.client.add_secret_version(self.id, version, **kwargs)
 
-    def cancel_version_destruction(self, version_id: str, **kwargs) -> YandexLockboxResponse | YandexLockboxError:
+    def cancel_version_destruction(self, version_id: str, **kwargs) -> Operation | YandexCloudError:
         """Shortcut for cancel destruction specified version of the current secret."""
         return self.client.cancel_secret_version_destruction(self.id, version_id, **kwargs)
 
-    def deactivate(self, **kwargs) -> YandexLockboxResponse | YandexLockboxError:
+    def deactivate(self, **kwargs) -> Operation | YandexCloudError:
         """Shortcut for deactivate the current secret."""
         return self.client.deactivate_secret(self.id, **kwargs)
 
-    def delete(self, **kwargs) -> YandexLockboxResponse | YandexLockboxError:
+    def delete(self, **kwargs) -> Operation | YandexCloudError:
         """Shortcut for delete the current secret."""
         return self.client.delete_secret(self.id, **kwargs)
 
@@ -201,12 +201,12 @@ class Secret(BaseDomainModel):
         """Shortcut for get fresh data about this secret."""
         return self.client.get_secret(self.id, **kwargs)
 
-    def payload(self, version_id: str | None = None, **kwargs) -> YandexLockboxResponse | YandexLockboxError:
+    def payload(self, version_id: str | None = None, **kwargs) -> Operation | YandexCloudError:
         return self.client.get_secret_payload(self.id, version_id, **kwargs)
 
     def list_versions(
         self, page_size: int = 100, page_token: str | None = None, iterator: bool = False, **kwargs
-    ) -> "SecretVersionsList" | Iterator[SecretVersion] | YandexLockboxError:
+    ) -> "SecretVersionsList" | Iterator[SecretVersion] | YandexCloudError:
         """Shortcut for list all available versions of the current secret."""
         return self.client.list_secret_versions(
             self.id, page_size=page_size, page_token=page_token, iterator=iterator, **kwargs
@@ -214,11 +214,11 @@ class Secret(BaseDomainModel):
 
     def schedule_version_destruction(
         self, version_id: str, pending_period: int = 604800, **kwargs
-    ) -> YandexLockboxResponse | YandexLockboxError:
+    ) -> Operation | YandexCloudError:
         """Shortcut for schedule destruction for specified version of the current secret."""
         return self.client.schedule_secret_version_destruction(self.id, version_id, pending_period, **kwargs)
 
-    def update(self, data: IUpdateSecret, **kwargs) -> YandexLockboxResponse | YandexLockboxError:
+    def update(self, data: IUpdateSecret, **kwargs) -> Operation | YandexCloudError:
         """Shortcut for update current secret."""
         return self.client.update_secret(self.id, data, **kwargs)
 
