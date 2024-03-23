@@ -27,7 +27,7 @@ SOFTWARE.
 from yc_lockbox._lockbox import YandexLockboxClient
 from yc_lockbox._models import Secret, INewSecretPayloadEntry, INewSecret, INewSecretVersion, IUpdateSecret
 
-__version__ = "0.0.2"
+__version__ = "0.1.0"
 __author__ = "Akim Faskhutdinov"
 __author_email__ = "akimstrong@yandex.ru"
 __license__ = "MIT"
