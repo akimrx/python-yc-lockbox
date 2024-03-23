@@ -30,6 +30,7 @@ This client is  a simple library for working with **[Yandex Lockbox](https://clo
 * Async client implementation
 * Implement access bindings methods and view operations
 * Tests
+* Ansible action and lookup plugins
 
 
 ## Install
