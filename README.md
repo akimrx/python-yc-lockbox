@@ -92,7 +92,7 @@ from yc_lockbox import YandexLockboxClient, INewSecret, INewSecretPayloadEntry
 
 lockbox = YandexLockboxClient("oauth_or_iam_token")
 
-my_secret = lockbox.create_secret(
+create_secret_operation = lockbox.create_secret(
     INewSecret(
     folder_id="b1xxxxxxxxxxxxxx",
     name="my-secret",
@@ -103,8 +103,10 @@ my_secret = lockbox.create_secret(
     )
 )
 
-if my_secret.done:
-    print(my_secret.metadata.get("secretId"))
+if create_secret_operation.done:
+    new_secret = create_secret_operation.resource
+    print(new_secret.id)
+    new_secret.deactivate()
 ```
 
 

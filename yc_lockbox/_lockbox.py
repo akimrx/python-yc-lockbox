@@ -150,13 +150,15 @@ class YandexLockboxClient(AbstractYandexLockboxClient):
             Defaults to ``True``.
         """
         url = f"{self.lockbox_base_url}/secrets/{secret_id}:activate"
-        return self.adapter.request(
+        response = self.adapter.request(
             "POST",
             url,
             headers=self.auth_headers,
             response_model=Operation,
             raise_for_status=raise_for_status,
         )
+        response.inject_client(self)
+        return response
 
     def add_secret_version(
         self, secret_id: str, version: INewSecretVersion, raise_for_status: bool = True
@@ -171,7 +173,7 @@ class YandexLockboxClient(AbstractYandexLockboxClient):
         """
         url = f"{self.lockbox_base_url}/secrets/{secret_id}:addVersion"
         payload = version.model_dump_json(by_alias=True, exclude_none=True)
-        return self.adapter.request(
+        response = self.adapter.request(
             "POST",
             url,
             headers=self.auth_headers,
@@ -179,6 +181,8 @@ class YandexLockboxClient(AbstractYandexLockboxClient):
             response_model=Operation,
             raise_for_status=raise_for_status,
         )
+        response.inject_client(self)
+        return response
 
     def create_secret(self, secret: INewSecret, raise_for_status: bool = True) -> Operation | YandexCloudError:
         """
@@ -190,7 +194,7 @@ class YandexLockboxClient(AbstractYandexLockboxClient):
         """
         url = f"{self.lockbox_base_url}/secrets"
         payload = secret.model_dump_json(by_alias=True, exclude_none=True)
-        return self.adapter.request(
+        response = self.adapter.request(
             "POST",
             url,
             headers=self.auth_headers,
@@ -198,6 +202,8 @@ class YandexLockboxClient(AbstractYandexLockboxClient):
             response_model=Operation,
             raise_for_status=raise_for_status,
         )
+        response.inject_client(self)
+        return response
 
     def cancel_secret_version_destruction(
         self, secret_id: str, version_id: str, raise_for_status: bool = True
@@ -212,7 +218,7 @@ class YandexLockboxClient(AbstractYandexLockboxClient):
         """
         url = f"{self.lockbox_base_url}/secrets/{secret_id}:cancelVersionDestruction"
         payload = {"versionId": version_id}
-        return self.adapter.request(
+        response = self.adapter.request(
             "POST",
             url,
             headers=self.auth_headers,
@@ -220,6 +226,8 @@ class YandexLockboxClient(AbstractYandexLockboxClient):
             response_model=Operation,
             raise_for_status=raise_for_status,
         )
+        response.inject_client(self)
+        return response
 
     def deactivate_secret(self, secret_id: str, raise_for_status: bool = True) -> Operation | YandexCloudError:
         """
@@ -230,13 +238,15 @@ class YandexLockboxClient(AbstractYandexLockboxClient):
             Defaults to ``True``.
         """
         url = f"{self.lockbox_base_url}/secrets/{secret_id}:deactivate"
-        return self.adapter.request(
+        response = self.adapter.request(
             "POST",
             url,
             headers=self.auth_headers,
             response_model=Operation,
             raise_for_status=raise_for_status,
         )
+        response.inject_client(self)
+        return response
 
     def delete_secret(self, secret_id: str, raise_for_status: bool = True) -> Operation | YandexCloudError:
         """
@@ -247,13 +257,15 @@ class YandexLockboxClient(AbstractYandexLockboxClient):
             Defaults to ``True``.
         """
         url = f"{self.lockbox_base_url}/secrets/{secret_id}"
-        return self.adapter.request(
+        response = self.adapter.request(
             "DELETE",
             url,
             headers=self.auth_headers,
             response_model=Operation,
             raise_for_status=raise_for_status,
         )
+        response.inject_client(self)
+        return response
 
     def get_secret(self, secret_id: str, raise_for_status: bool = True) -> Secret | YandexCloudError:
         """
@@ -412,7 +424,7 @@ class YandexLockboxClient(AbstractYandexLockboxClient):
 
         url = f"{self.lockbox_base_url}/secrets/{secret_id}:scheduleVersionDestruction"
         payload = {"versionId": version_id, "pendingPeriod": pending_period}
-        return self.adapter.request(
+        response = self.adapter.request(
             "POST",
             url,
             headers=self.auth_headers,
@@ -420,6 +432,8 @@ class YandexLockboxClient(AbstractYandexLockboxClient):
             response_model=Operation,
             raise_for_status=raise_for_status,
         )
+        response.inject_client(self)
+        return response
 
     # TODO: implement
     def set_secret_access_bindings(self, *args, **kwargs):
@@ -445,7 +459,7 @@ class YandexLockboxClient(AbstractYandexLockboxClient):
         """
         url = f"{self.lockbox_base_url}/secrets/{secret_id}"
         payload = data.model_dump_json(by_alias=True)
-        return self.adapter.request(
+        response = self.adapter.request(
             "PATCH",
             url,
             headers=self.auth_headers,
@@ -453,6 +467,8 @@ class YandexLockboxClient(AbstractYandexLockboxClient):
             response_model=Operation,
             raise_for_status=raise_for_status,
         )
+        response.inject_client(self)
+        return response
 
     # TODO: implement
     def update_secret_access_bindings(self, *args, **kwargs):
