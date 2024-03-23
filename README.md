@@ -9,6 +9,13 @@ This client is  a simple library for working with **[Yandex Lockbox](https://clo
 * 3.11
 * 3.12
 
+**Dependencies:**
+
+* [Pydantic V2](https://github.com/pydantic/pydantic)
+* [Crypthography](https://github.com/pyca/cryptography)
+* [PyJWT](https://github.com/jpadilla/pyjwt)
+* [Requests](https://github.com/psf/requests)
+
 
 **Currently, the following operations are not supported by the library:**
 
