@@ -31,6 +31,7 @@ __version__ = "0.1.0"
 __author__ = "Akim Faskhutdinov"
 __author_email__ = "akimstrong@yandex.ru"
 __license__ = "MIT"
+__url__ = "https://github.com/akimrx/python-yc-lockbox"
 
 __all__ = [
     "Secret",
