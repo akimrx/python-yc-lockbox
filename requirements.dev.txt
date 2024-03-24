@@ -9,3 +9,9 @@ python-semantic-release==9.1.1
 PyYAML==6.0.1
 twine==5.*
 wheel
+sphinx
+sphinx-autodoc-typehints
+sphinx-copybutton
+sphinx-inline-tabs
+autodoc_pydantic
+furo==2024.*

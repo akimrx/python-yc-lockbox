@@ -55,7 +55,6 @@ def aio_requirements():
 
 
 meta = metadata()
-readme = build_description()
 
 
 def main() -> None:
@@ -68,6 +67,10 @@ def main() -> None:
         author=meta.get("__author__"),
         author_email=meta.get("__author_email__"),
         license=meta.get("__license__"),
+        description="Yandex Lockbox client",
+        long_description=build_description(),
+        long_description_content_type="text/markdown",
+        url=metadata.get("__url__"),
         python_requires=">=3.10",
         packages=find_packages(),
         install_requires=get_requirements(),

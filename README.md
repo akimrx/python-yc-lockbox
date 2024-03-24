@@ -1,6 +1,6 @@
 # Yandex Lockbox Client
 
-This client is  a simple library for working with **[Yandex Lockbox](https://cloud.yandex.ru/en/docs/lockbox/)** over [REST API](https://cloud.yandex.ru/en/docs/lockbox/api-ref/), simplifying work with secrets and allowing you to work with them in the OOP paradigm.
+This library is a simple client for working with **[Yandex Lockbox](https://cloud.yandex.ru/en/docs/lockbox/)** over [REST API](https://cloud.yandex.ru/en/docs/lockbox/api-ref/), simplifying work with secrets and allowing you to work with them in the OOP paradigm.
 
 
 **Supported Python versions**:
