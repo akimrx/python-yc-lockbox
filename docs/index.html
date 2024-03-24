@@ -358,7 +358,7 @@ make<span class="w"> </span>install
    <span class="n">secret</span><span class="o">.</span><span class="n">deactivate</span><span class="p">()</span>
    <span class="n">secret</span><span class="o">.</span><span class="n">activate</span><span class="p">()</span>
 
-   <span class="k">for</span> <span class="n">version</span> <span class="ow">in</span> <span class="n">secret</span><span class="o">.</span><span class="n">list_versions</span><span class="p">(</span><span class="n">iterator</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+   <span class="k">for</span> <span class="n">version</span> <span class="ow">in</span> <span class="n">secret</span><span class="o">.</span><span class="n">list_versions</span><span class="p">(</span><span class="n">iterator</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>  <span class="c1"># if iterator=False returns paginated list with ``next_page_token``</span>
       <span class="k">if</span> <span class="n">version</span><span class="o">.</span><span class="n">id</span> <span class="o">!=</span> <span class="n">secret</span><span class="o">.</span><span class="n">current_version</span><span class="o">.</span><span class="n">id</span><span class="p">:</span>
             <span class="n">version</span><span class="o">.</span><span class="n">schedule_version_destruction</span><span class="p">()</span>
             <span class="n">version</span><span class="o">.</span><span class="n">cancel_version_destruction</span><span class="p">()</span>

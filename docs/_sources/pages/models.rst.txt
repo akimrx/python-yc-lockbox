@@ -21,6 +21,8 @@ Paginated models
 
 Used when ``iterator=False``.
 
+The models contain a ``next_page_token: str | None`` field pointing to the next page.
+
 .. autopydantic_model:: yc_lockbox._models.SecretsList
 
 .. autopydantic_model:: yc_lockbox._models.SecretVersionsList

@@ -205,7 +205,7 @@ Other operations with secret
       secret.deactivate()
       secret.activate()
 
-      for version in secret.list_versions(iterator=True):
+      for version in secret.list_versions(iterator=True):  # if iterator=False returns paginated list with ``next_page_token``
          if version.id != secret.current_version.id:
                version.schedule_version_destruction()
                version.cancel_version_destruction()
