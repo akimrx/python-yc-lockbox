@@ -2,7 +2,7 @@
 
 This library is a simple client for working with **[Yandex Lockbox](https://cloud.yandex.ru/en/docs/lockbox/)** over [REST API](https://cloud.yandex.ru/en/docs/lockbox/api-ref/), simplifying work with secrets and allowing you to work with them in the OOP paradigm.
 
-**[Documentation](https://akimrx.github.io/python-yc-lockbox/)**
+**[Full library documentation link](https://akimrx.github.io/python-yc-lockbox/)**
 
 **Supported Python versions**:
 
