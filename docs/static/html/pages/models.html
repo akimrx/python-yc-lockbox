@@ -1,0 +1,924 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="../">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="Exceptions" href="exceptions.html" /><link rel="prev" title="Client" href="clients.html" />
+
+    <!-- Generated with Sphinx 7.2.6 and Furo 2024.01.29 -->
+        <title>Models &amp; objects - Yandex Lockbox Python client documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=135e06be" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/autodoc_pydantic.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?v=36a5483c" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../index.html"><div class="brand">Yandex Lockbox Python client documentation</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../index.html">
+  
+  
+  <span class="sidebar-brand-text">Yandex Lockbox Python client documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">Content:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="clients.html">Client</a></li>
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Models &amp; objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="exceptions.html">Exceptions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="adapters.html">Adapters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="abstracts.html">Abstracts</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main">
+          <section id="models-objects">
+<h1>Models &amp; objects<a class="headerlink" href="#models-objects" title="Link to this heading">#</a></h1>
+<section id="domain-models">
+<h2>Domain models<a class="headerlink" href="#domain-models" title="Link to this heading">#</a></h2>
+<p>Domain models provide complete information about the resource, similar to aggregates, and also have commands (methods) for managing the resource.</p>
+<dl class="py class pydantic_model">
+<dt class="sig sig-object py" id="yc_lockbox._models.Secret">
+<em class="property"><span class="pre">pydantic</span> <span class="pre">model</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">yc_lockbox._models.</span></span><span class="sig-name descname"><span class="pre">Secret</span></span><a class="reference internal" href="../_modules/yc_lockbox/_models.html#Secret"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#yc_lockbox._models.Secret" title="Link to this definition">#</a></dt>
+<dd><p>A root domain model that represents Lockbox Secret.
+This model contains commands (methods) for secret manipulate.</p>
+<p>Usage:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># basic commands</span>
+<span class="n">secret</span><span class="o">.</span><span class="n">deactivate</span><span class="p">()</span>
+<span class="n">secret</span><span class="o">.</span><span class="n">activate</span><span class="p">()</span>
+<span class="n">secret</span><span class="o">.</span><span class="n">delete</span><span class="p">()</span>
+
+<span class="c1"># get payload from Secret</span>
+<span class="n">secret_payload</span> <span class="o">=</span> <span class="n">secret</span><span class="o">.</span><span class="n">payload</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">secret_payload</span><span class="p">[</span><span class="s2">&quot;my_entry&quot;</span><span class="p">])</span>  <span class="c1"># by default secret values is masked like ******</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">secret_payload</span><span class="p">[</span><span class="s2">&quot;my_entry&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">reveal_text_value</span><span class="p">())</span>  <span class="c1"># show real value</span>
+
+<span class="c1"># get all secret versions and destruct olds</span>
+<span class="k">for</span> <span class="n">version</span> <span class="ow">in</span> <span class="n">secret</span><span class="o">.</span><span class="n">list_versions</span><span class="p">(</span><span class="n">iterator</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">version</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">version</span><span class="o">.</span><span class="n">id</span> <span class="o">!=</span> <span class="n">secret</span><span class="o">.</span><span class="n">current_version</span><span class="o">.</span><span class="n">id</span><span class="p">:</span>
+        <span class="n">version</span><span class="o">.</span><span class="n">schedule_version_destruction</span><span class="p">()</span>
+
+<span class="c1"># update a secret</span>
+<span class="n">new_data</span> <span class="o">=</span> <span class="n">IUpdateSecret</span><span class="p">(</span>
+    <span class="n">update_mask</span><span class="o">=</span><span class="s2">&quot;name,description&quot;</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;new-secret-name&quot;</span><span class="p">,</span>
+    <span class="n">description</span><span class="o">=</span><span class="s2">&quot;My secret&quot;</span>
+<span class="p">)</span>
+<span class="n">update_operation</span> <span class="o">=</span> <span class="n">secret</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">new_data</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">update_operation</span><span class="o">.</span><span class="n">done</span><span class="p">:</span>  <span class="c1"># or use secret.refresh()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">update_operation</span><span class="o">.</span><span class="n">resource</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">update_operation</span><span class="o">.</span><span class="n">resource</span><span class="o">.</span><span class="n">description</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Fields<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><a class="reference internal" href="#yc_lockbox._models.Secret.created_at" title="yc_lockbox._models.Secret.created_at"><code class="xref py py-obj docutils literal notranslate"><span class="pre">created_at</span> <span class="pre">(datetime.datetime)</span></code></a></p></li>
+<li><p><a class="reference internal" href="#yc_lockbox._models.Secret.current_version" title="yc_lockbox._models.Secret.current_version"><code class="xref py py-obj docutils literal notranslate"><span class="pre">current_version</span> <span class="pre">(yc_lockbox._models.SecretVersion)</span></code></a></p></li>
+<li><p><a class="reference internal" href="#yc_lockbox._models.Secret.deletion_protection" title="yc_lockbox._models.Secret.deletion_protection"><code class="xref py py-obj docutils literal notranslate"><span class="pre">deletion_protection</span> <span class="pre">(bool)</span></code></a></p></li>
+<li><p><a class="reference internal" href="#yc_lockbox._models.Secret.description" title="yc_lockbox._models.Secret.description"><code class="xref py py-obj docutils literal notranslate"><span class="pre">description</span> <span class="pre">(str</span> <span class="pre">|</span> <span class="pre">None)</span></code></a></p></li>
+<li><p><a class="reference internal" href="#yc_lockbox._models.Secret.folder_id" title="yc_lockbox._models.Secret.folder_id"><code class="xref py py-obj docutils literal notranslate"><span class="pre">folder_id</span> <span class="pre">(str)</span></code></a></p></li>
+<li><p><a class="reference internal" href="#yc_lockbox._models.Secret.id" title="yc_lockbox._models.Secret.id"><code class="xref py py-obj docutils literal notranslate"><span class="pre">id</span> <span class="pre">(str)</span></code></a></p></li>
+<li><p><a class="reference internal" href="#yc_lockbox._models.Secret.kms_key_id" title="yc_lockbox._models.Secret.kms_key_id"><code class="xref py py-obj docutils literal notranslate"><span class="pre">kms_key_id</span> <span class="pre">(str</span> <span class="pre">|</span> <span class="pre">None)</span></code></a></p></li>
+<li><p><a class="reference internal" href="#yc_lockbox._models.Secret.labels" title="yc_lockbox._models.Secret.labels"><code class="xref py py-obj docutils literal notranslate"><span class="pre">labels</span> <span class="pre">(dict[str,</span> <span class="pre">str]</span> <span class="pre">|</span> <span class="pre">None)</span></code></a></p></li>
+<li><p><a class="reference internal" href="#yc_lockbox._models.Secret.name" title="yc_lockbox._models.Secret.name"><code class="xref py py-obj docutils literal notranslate"><span class="pre">name</span> <span class="pre">(str</span> <span class="pre">|</span> <span class="pre">None)</span></code></a></p></li>
+<li><p><a class="reference internal" href="#yc_lockbox._models.Secret.status" title="yc_lockbox._models.Secret.status"><code class="xref py py-obj docutils literal notranslate"><span class="pre">status</span> <span class="pre">(str)</span></code></a></p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="yc_lockbox._models.Secret.created_at">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">created_at</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">datetime</span></code></em><em class="property"> <span class="pre">[Required]</span></em><em class="property"> <span class="pre">(alias</span> <span class="pre">'createdAt')</span></em><a class="headerlink" href="#yc_lockbox._models.Secret.created_at" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="yc_lockbox._models.Secret.current_version">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">current_version</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#yc_lockbox._models.SecretVersion" title="yc_lockbox._models.SecretVersion"><code class="xref py py-class docutils literal notranslate"><span class="pre">SecretVersion</span></code></a></em><em class="property"> <span class="pre">[Required]</span></em><em class="property"> <span class="pre">(alias</span> <span class="pre">'currentVersion')</span></em><a class="headerlink" href="#yc_lockbox._models.Secret.current_version" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="yc_lockbox._models.Secret.deletion_protection">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">deletion_protection</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></em><em class="property"> <span class="pre">[Required]</span></em><em class="property"> <span class="pre">(alias</span> <span class="pre">'deletionProtection')</span></em><a class="headerlink" href="#yc_lockbox._models.Secret.deletion_protection" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="yc_lockbox._models.Secret.description">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">description</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code> <span class="pre">|</span> <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#yc_lockbox._models.Secret.description" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="yc_lockbox._models.Secret.folder_id">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">folder_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></em><em class="property"> <span class="pre">[Required]</span></em><em class="property"> <span class="pre">(alias</span> <span class="pre">'folderId')</span></em><a class="headerlink" href="#yc_lockbox._models.Secret.folder_id" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="yc_lockbox._models.Secret.id">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></em><em class="property"> <span class="pre">[Required]</span></em><a class="headerlink" href="#yc_lockbox._models.Secret.id" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="yc_lockbox._models.Secret.kms_key_id">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">kms_key_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code> <span class="pre">|</span> <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"> <span class="pre">(alias</span> <span class="pre">'kmsKeyId')</span></em><a class="headerlink" href="#yc_lockbox._models.Secret.kms_key_id" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="yc_lockbox._models.Secret.labels">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">labels</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code><span class="pre">[</span><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code><span class="pre">,</span> <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code><span class="pre">]</span> <span class="pre">|</span> <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#yc_lockbox._models.Secret.labels" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="yc_lockbox._models.Secret.name">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code> <span class="pre">|</span> <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#yc_lockbox._models.Secret.name" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="yc_lockbox._models.Secret.status">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">status</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'UNKNOWN'</span></em><a class="headerlink" href="#yc_lockbox._models.Secret.status" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="yc_lockbox._models.Secret.activate">
+<span class="sig-name descname"><span class="pre">activate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/yc_lockbox/_models.html#Secret.activate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#yc_lockbox._models.Secret.activate" title="Link to this definition">#</a></dt>
+<dd><p>Shortcut for activate the current secret.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Operation</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">YandexCloudError</span></code>]</span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="yc_lockbox._models.Secret.add_version">
+<span class="sig-name descname"><span class="pre">add_version</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">version</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/yc_lockbox/_models.html#Secret.add_version"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#yc_lockbox._models.Secret.add_version" title="Link to this definition">#</a></dt>
+<dd><p>Shortcut for add a new version to the current secret.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Operation</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">YandexCloudError</span></code>]</span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="yc_lockbox._models.Secret.cancel_version_destruction">
+<span class="sig-name descname"><span class="pre">cancel_version_destruction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">version_id</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/yc_lockbox/_models.html#Secret.cancel_version_destruction"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#yc_lockbox._models.Secret.cancel_version_destruction" title="Link to this definition">#</a></dt>
+<dd><p>Shortcut for cancel destruction specified version of the current secret.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Operation</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">YandexCloudError</span></code>]</span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="yc_lockbox._models.Secret.deactivate">
+<span class="sig-name descname"><span class="pre">deactivate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/yc_lockbox/_models.html#Secret.deactivate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#yc_lockbox._models.Secret.deactivate" title="Link to this definition">#</a></dt>
+<dd><p>Shortcut for deactivate the current secret.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Operation</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">YandexCloudError</span></code>]</span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="yc_lockbox._models.Secret.delete">
+<span class="sig-name descname"><span class="pre">delete</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/yc_lockbox/_models.html#Secret.delete"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#yc_lockbox._models.Secret.delete" title="Link to this definition">#</a></dt>
+<dd><p>Shortcut for delete the current secret.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Operation</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">YandexCloudError</span></code>]</span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="yc_lockbox._models.Secret.list_versions">
+<span class="sig-name descname"><span class="pre">list_versions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">page_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">page_token</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">iterator</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/yc_lockbox/_models.html#Secret.list_versions"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#yc_lockbox._models.Secret.list_versions" title="Link to this definition">#</a></dt>
+<dd><p>Shortcut for list all available versions of the current secret.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">SecretVersionsList</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">Iterator</span></code>[<a class="reference internal" href="#yc_lockbox._models.SecretVersion" title="yc_lockbox._models.SecretVersion"><code class="xref py py-class docutils literal notranslate"><span class="pre">SecretVersion</span></code></a>], <code class="xref py py-class docutils literal notranslate"><span class="pre">YandexCloudError</span></code>]</span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="yc_lockbox._models.Secret.payload">
+<span class="sig-name descname"><span class="pre">payload</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">version_id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/yc_lockbox/_models.html#Secret.payload"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#yc_lockbox._models.Secret.payload" title="Link to this definition">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Operation</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">YandexCloudError</span></code>]</span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="yc_lockbox._models.Secret.refresh">
+<span class="sig-name descname"><span class="pre">refresh</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/yc_lockbox/_models.html#Secret.refresh"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#yc_lockbox._models.Secret.refresh" title="Link to this definition">#</a></dt>
+<dd><p>Shortcut for refresh attributes for this secret.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#yc_lockbox._models.Secret" title="yc_lockbox._models.Secret"><code class="xref py py-class docutils literal notranslate"><span class="pre">Secret</span></code></a></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="yc_lockbox._models.Secret.schedule_version_destruction">
+<span class="sig-name descname"><span class="pre">schedule_version_destruction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">version_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pending_period</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">604800</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/yc_lockbox/_models.html#Secret.schedule_version_destruction"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#yc_lockbox._models.Secret.schedule_version_destruction" title="Link to this definition">#</a></dt>
+<dd><p>Shortcut for schedule destruction for specified version of the current secret.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Operation</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">YandexCloudError</span></code>]</span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="yc_lockbox._models.Secret.update">
+<span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/yc_lockbox/_models.html#Secret.update"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#yc_lockbox._models.Secret.update" title="Link to this definition">#</a></dt>
+<dd><p>Shortcut for update current secret.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Operation</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">YandexCloudError</span></code>]</span></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class pydantic_model">
+<dt class="sig sig-object py" id="yc_lockbox._models.SecretVersion">
+<em class="property"><span class="pre">pydantic</span> <span class="pre">model</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">yc_lockbox._models.</span></span><span class="sig-name descname"><span class="pre">SecretVersion</span></span><a class="reference internal" href="../_modules/yc_lockbox/_models.html#SecretVersion"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#yc_lockbox._models.SecretVersion" title="Link to this definition">#</a></dt>
+<dd><p>Domain object that represents a version from <a class="reference internal" href="#yc_lockbox._models.Secret" title="yc_lockbox._models.Secret"><code class="xref py py-class docutils literal notranslate"><span class="pre">Secret</span></code></a>.
+This object contains methods for call version commands.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Fields<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><a class="reference internal" href="#yc_lockbox._models.SecretVersion.created_at" title="yc_lockbox._models.SecretVersion.created_at"><code class="xref py py-obj docutils literal notranslate"><span class="pre">created_at</span> <span class="pre">(datetime.datetime)</span></code></a></p></li>
+<li><p><a class="reference internal" href="#yc_lockbox._models.SecretVersion.description" title="yc_lockbox._models.SecretVersion.description"><code class="xref py py-obj docutils literal notranslate"><span class="pre">description</span> <span class="pre">(str</span> <span class="pre">|</span> <span class="pre">None)</span></code></a></p></li>
+<li><p><a class="reference internal" href="#yc_lockbox._models.SecretVersion.destroy_at" title="yc_lockbox._models.SecretVersion.destroy_at"><code class="xref py py-obj docutils literal notranslate"><span class="pre">destroy_at</span> <span class="pre">(datetime.datetime</span> <span class="pre">|</span> <span class="pre">None)</span></code></a></p></li>
+<li><p><a class="reference internal" href="#yc_lockbox._models.SecretVersion.id" title="yc_lockbox._models.SecretVersion.id"><code class="xref py py-obj docutils literal notranslate"><span class="pre">id</span> <span class="pre">(str)</span></code></a></p></li>
+<li><p><a class="reference internal" href="#yc_lockbox._models.SecretVersion.payload_entry_keys" title="yc_lockbox._models.SecretVersion.payload_entry_keys"><code class="xref py py-obj docutils literal notranslate"><span class="pre">payload_entry_keys</span> <span class="pre">(list[str]</span> <span class="pre">|</span> <span class="pre">None)</span></code></a></p></li>
+<li><p><a class="reference internal" href="#yc_lockbox._models.SecretVersion.secret_id" title="yc_lockbox._models.SecretVersion.secret_id"><code class="xref py py-obj docutils literal notranslate"><span class="pre">secret_id</span> <span class="pre">(str)</span></code></a></p></li>
+<li><p><a class="reference internal" href="#yc_lockbox._models.SecretVersion.status" title="yc_lockbox._models.SecretVersion.status"><code class="xref py py-obj docutils literal notranslate"><span class="pre">status</span> <span class="pre">(str)</span></code></a></p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="yc_lockbox._models.SecretVersion.created_at">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">created_at</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">datetime</span></code></em><em class="property"> <span class="pre">[Required]</span></em><em class="property"> <span class="pre">(alias</span> <span class="pre">'createdAt')</span></em><a class="headerlink" href="#yc_lockbox._models.SecretVersion.created_at" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="yc_lockbox._models.SecretVersion.description">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">description</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code> <span class="pre">|</span> <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#yc_lockbox._models.SecretVersion.description" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="yc_lockbox._models.SecretVersion.destroy_at">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">destroy_at</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">datetime</span></code> <span class="pre">|</span> <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"> <span class="pre">(alias</span> <span class="pre">'destroyAt')</span></em><a class="headerlink" href="#yc_lockbox._models.SecretVersion.destroy_at" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="yc_lockbox._models.SecretVersion.id">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></em><em class="property"> <span class="pre">[Required]</span></em><a class="headerlink" href="#yc_lockbox._models.SecretVersion.id" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="yc_lockbox._models.SecretVersion.payload_entry_keys">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">payload_entry_keys</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code><span class="pre">[</span><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code><span class="pre">]</span> <span class="pre">|</span> <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"> <span class="pre">(alias</span> <span class="pre">'payloadEntryKeys')</span></em><a class="headerlink" href="#yc_lockbox._models.SecretVersion.payload_entry_keys" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="yc_lockbox._models.SecretVersion.secret_id">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">secret_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></em><em class="property"> <span class="pre">[Required]</span></em><em class="property"> <span class="pre">(alias</span> <span class="pre">'secretId')</span></em><a class="headerlink" href="#yc_lockbox._models.SecretVersion.secret_id" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="yc_lockbox._models.SecretVersion.status">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">status</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'UNKNOWN'</span></em><a class="headerlink" href="#yc_lockbox._models.SecretVersion.status" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="yc_lockbox._models.SecretVersion.cancel_version_destruction">
+<span class="sig-name descname"><span class="pre">cancel_version_destruction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/yc_lockbox/_models.html#SecretVersion.cancel_version_destruction"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#yc_lockbox._models.SecretVersion.cancel_version_destruction" title="Link to this definition">#</a></dt>
+<dd><p>Shortcut for cancel destruction for this version.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Operation</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">YandexCloudError</span></code>]</span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="yc_lockbox._models.SecretVersion.payload">
+<span class="sig-name descname"><span class="pre">payload</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/yc_lockbox/_models.html#SecretVersion.payload"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#yc_lockbox._models.SecretVersion.payload" title="Link to this definition">#</a></dt>
+<dd><p>Get payload from the current secret..</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<a class="reference internal" href="#yc_lockbox._models.SecretPayload" title="yc_lockbox._models.SecretPayload"><code class="xref py py-class docutils literal notranslate"><span class="pre">SecretPayload</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">YandexCloudError</span></code>]</span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="yc_lockbox._models.SecretVersion.schedule_version_destruction">
+<span class="sig-name descname"><span class="pre">schedule_version_destruction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pending_period</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">604800</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/yc_lockbox/_models.html#SecretVersion.schedule_version_destruction"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#yc_lockbox._models.SecretVersion.schedule_version_destruction" title="Link to this definition">#</a></dt>
+<dd><p>Shortcut for schedule descruction for this version.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Operation</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">YandexCloudError</span></code>]</span></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class pydantic_model">
+<dt class="sig sig-object py" id="yc_lockbox._models.SecretPayload">
+<em class="property"><span class="pre">pydantic</span> <span class="pre">model</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">yc_lockbox._models.</span></span><span class="sig-name descname"><span class="pre">SecretPayload</span></span><a class="reference internal" href="../_modules/yc_lockbox/_models.html#SecretPayload"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#yc_lockbox._models.SecretPayload" title="Link to this definition">#</a></dt>
+<dd><p>Domain object that represents a payload for <a class="reference internal" href="#yc_lockbox._models.Secret" title="yc_lockbox._models.Secret"><code class="xref py py-class docutils literal notranslate"><span class="pre">Secret</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Fields<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><a class="reference internal" href="#yc_lockbox._models.SecretPayload.entries" title="yc_lockbox._models.SecretPayload.entries"><code class="xref py py-obj docutils literal notranslate"><span class="pre">entries</span> <span class="pre">(list[yc_lockbox._models.SecretPayloadEntry])</span></code></a></p></li>
+<li><p><a class="reference internal" href="#yc_lockbox._models.SecretPayload.version_id" title="yc_lockbox._models.SecretPayload.version_id"><code class="xref py py-obj docutils literal notranslate"><span class="pre">version_id</span> <span class="pre">(str)</span></code></a></p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="yc_lockbox._models.SecretPayload.entries">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">entries</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code><span class="pre">[</span><a class="reference internal" href="#yc_lockbox._models.SecretPayloadEntry" title="yc_lockbox._models.SecretPayloadEntry"><code class="xref py py-class docutils literal notranslate"><span class="pre">SecretPayloadEntry</span></code></a><span class="pre">]</span></em><em class="property"> <span class="pre">[Required]</span></em><a class="headerlink" href="#yc_lockbox._models.SecretPayload.entries" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="yc_lockbox._models.SecretPayload.version_id">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">version_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></em><em class="property"> <span class="pre">[Required]</span></em><em class="property"> <span class="pre">(alias</span> <span class="pre">'versionId')</span></em><a class="headerlink" href="#yc_lockbox._models.SecretPayload.version_id" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="yc_lockbox._models.SecretPayload.get">
+<span class="sig-name descname"><span class="pre">get</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">default</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/yc_lockbox/_models.html#SecretPayload.get"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#yc_lockbox._models.SecretPayload.get" title="Link to this definition">#</a></dt>
+<dd><p>Get entry object from payload.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>key</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – Entry key (name).</p></li>
+<li><p><strong>default</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code>]</span>) – Default return value if key not exists.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#yc_lockbox._models.SecretPayloadEntry" title="yc_lockbox._models.SecretPayloadEntry"><code class="xref py py-class docutils literal notranslate"><span class="pre">SecretPayloadEntry</span></code></a> | <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class pydantic_model">
+<dt class="sig sig-object py" id="yc_lockbox._models.SecretPayloadEntry">
+<em class="property"><span class="pre">pydantic</span> <span class="pre">model</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">yc_lockbox._models.</span></span><span class="sig-name descname"><span class="pre">SecretPayloadEntry</span></span><a class="reference internal" href="../_modules/yc_lockbox/_models.html#SecretPayloadEntry"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#yc_lockbox._models.SecretPayloadEntry" title="Link to this definition">#</a></dt>
+<dd><p>Domain object that represents an entry in the <a class="reference internal" href="#yc_lockbox._models.SecretPayload" title="yc_lockbox._models.SecretPayload"><code class="xref py py-class docutils literal notranslate"><span class="pre">SecretPayload</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Fields<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><a class="reference internal" href="#yc_lockbox._models.SecretPayloadEntry.binary_value" title="yc_lockbox._models.SecretPayloadEntry.binary_value"><code class="xref py py-obj docutils literal notranslate"><span class="pre">binary_value</span> <span class="pre">(pydantic.types.SecretBytes</span> <span class="pre">|</span> <span class="pre">None)</span></code></a></p></li>
+<li><p><a class="reference internal" href="#yc_lockbox._models.SecretPayloadEntry.key" title="yc_lockbox._models.SecretPayloadEntry.key"><code class="xref py py-obj docutils literal notranslate"><span class="pre">key</span> <span class="pre">(str)</span></code></a></p></li>
+<li><p><a class="reference internal" href="#yc_lockbox._models.SecretPayloadEntry.text_value" title="yc_lockbox._models.SecretPayloadEntry.text_value"><code class="xref py py-obj docutils literal notranslate"><span class="pre">text_value</span> <span class="pre">(pydantic.types.SecretStr</span> <span class="pre">|</span> <span class="pre">None)</span></code></a></p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="yc_lockbox._models.SecretPayloadEntry.binary_value">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">binary_value</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">SecretBytes</span></code> <span class="pre">|</span> <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"> <span class="pre">(alias</span> <span class="pre">'binaryValue')</span></em><a class="headerlink" href="#yc_lockbox._models.SecretPayloadEntry.binary_value" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="yc_lockbox._models.SecretPayloadEntry.key">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">key</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></em><em class="property"> <span class="pre">[Required]</span></em><a class="headerlink" href="#yc_lockbox._models.SecretPayloadEntry.key" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="yc_lockbox._models.SecretPayloadEntry.text_value">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">text_value</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">SecretStr</span></code> <span class="pre">|</span> <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"> <span class="pre">(alias</span> <span class="pre">'textValue')</span></em><a class="headerlink" href="#yc_lockbox._models.SecretPayloadEntry.text_value" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="yc_lockbox._models.SecretPayloadEntry.reveal_binary_value">
+<span class="sig-name descname"><span class="pre">reveal_binary_value</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/yc_lockbox/_models.html#SecretPayloadEntry.reveal_binary_value"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#yc_lockbox._models.SecretPayloadEntry.reveal_binary_value" title="Link to this definition">#</a></dt>
+<dd><p>Reveal a binary value.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">bytes</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="yc_lockbox._models.SecretPayloadEntry.reveal_text_value">
+<span class="sig-name descname"><span class="pre">reveal_text_value</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/yc_lockbox/_models.html#SecretPayloadEntry.reveal_text_value"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#yc_lockbox._models.SecretPayloadEntry.reveal_text_value" title="Link to this definition">#</a></dt>
+<dd><p>Reveal a text value.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="upsert-models">
+<h2>Upsert models<a class="headerlink" href="#upsert-models" title="Link to this heading">#</a></h2>
+<p>Upsert models (interfaces) are designed for operations of creating new resources or updating objects inside an existing resource.</p>
+<dl class="py class pydantic_model">
+<dt class="sig sig-object py" id="yc_lockbox._models.INewSecret">
+<em class="property"><span class="pre">pydantic</span> <span class="pre">model</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">yc_lockbox._models.</span></span><span class="sig-name descname"><span class="pre">INewSecret</span></span><a class="reference internal" href="../_modules/yc_lockbox/_models.html#INewSecret"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#yc_lockbox._models.INewSecret" title="Link to this definition">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Fields<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><a class="reference internal" href="#yc_lockbox._models.INewSecret.deletion_protection" title="yc_lockbox._models.INewSecret.deletion_protection"><code class="xref py py-obj docutils literal notranslate"><span class="pre">deletion_protection</span> <span class="pre">(bool)</span></code></a></p></li>
+<li><p><a class="reference internal" href="#yc_lockbox._models.INewSecret.description" title="yc_lockbox._models.INewSecret.description"><code class="xref py py-obj docutils literal notranslate"><span class="pre">description</span> <span class="pre">(str</span> <span class="pre">|</span> <span class="pre">None)</span></code></a></p></li>
+<li><p><a class="reference internal" href="#yc_lockbox._models.INewSecret.folder_id" title="yc_lockbox._models.INewSecret.folder_id"><code class="xref py py-obj docutils literal notranslate"><span class="pre">folder_id</span> <span class="pre">(str)</span></code></a></p></li>
+<li><p><a class="reference internal" href="#yc_lockbox._models.INewSecret.kms_key_id" title="yc_lockbox._models.INewSecret.kms_key_id"><code class="xref py py-obj docutils literal notranslate"><span class="pre">kms_key_id</span> <span class="pre">(str</span> <span class="pre">|</span> <span class="pre">None)</span></code></a></p></li>
+<li><p><a class="reference internal" href="#yc_lockbox._models.INewSecret.labels" title="yc_lockbox._models.INewSecret.labels"><code class="xref py py-obj docutils literal notranslate"><span class="pre">labels</span> <span class="pre">(dict[str,</span> <span class="pre">str]</span> <span class="pre">|</span> <span class="pre">None)</span></code></a></p></li>
+<li><p><a class="reference internal" href="#yc_lockbox._models.INewSecret.name" title="yc_lockbox._models.INewSecret.name"><code class="xref py py-obj docutils literal notranslate"><span class="pre">name</span> <span class="pre">(str</span> <span class="pre">|</span> <span class="pre">None)</span></code></a></p></li>
+<li><p><a class="reference internal" href="#yc_lockbox._models.INewSecret.version_description" title="yc_lockbox._models.INewSecret.version_description"><code class="xref py py-obj docutils literal notranslate"><span class="pre">version_description</span> <span class="pre">(str</span> <span class="pre">|</span> <span class="pre">None)</span></code></a></p></li>
+<li><p><a class="reference internal" href="#yc_lockbox._models.INewSecret.version_payload_entries" title="yc_lockbox._models.INewSecret.version_payload_entries"><code class="xref py py-obj docutils literal notranslate"><span class="pre">version_payload_entries</span> <span class="pre">(list[yc_lockbox._models.INewSecretPayloadEntry])</span></code></a></p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="yc_lockbox._models.INewSecret.deletion_protection">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">deletion_protection</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></em><em class="property"> <span class="pre">(alias</span> <span class="pre">'deletionProtection')</span></em><a class="headerlink" href="#yc_lockbox._models.INewSecret.deletion_protection" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="yc_lockbox._models.INewSecret.description">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">description</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code> <span class="pre">|</span> <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#yc_lockbox._models.INewSecret.description" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="yc_lockbox._models.INewSecret.folder_id">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">folder_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></em><em class="property"> <span class="pre">[Required]</span></em><em class="property"> <span class="pre">(alias</span> <span class="pre">'folderId')</span></em><a class="headerlink" href="#yc_lockbox._models.INewSecret.folder_id" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="yc_lockbox._models.INewSecret.kms_key_id">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">kms_key_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code> <span class="pre">|</span> <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"> <span class="pre">(alias</span> <span class="pre">'kmsKeyId')</span></em><a class="headerlink" href="#yc_lockbox._models.INewSecret.kms_key_id" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="yc_lockbox._models.INewSecret.labels">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">labels</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code><span class="pre">[</span><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code><span class="pre">,</span> <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code><span class="pre">]</span> <span class="pre">|</span> <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#yc_lockbox._models.INewSecret.labels" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="yc_lockbox._models.INewSecret.name">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code> <span class="pre">|</span> <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#yc_lockbox._models.INewSecret.name" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="yc_lockbox._models.INewSecret.version_description">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">version_description</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code> <span class="pre">|</span> <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"> <span class="pre">(alias</span> <span class="pre">'versionDescription')</span></em><a class="headerlink" href="#yc_lockbox._models.INewSecret.version_description" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="yc_lockbox._models.INewSecret.version_payload_entries">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">version_payload_entries</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code><span class="pre">[</span><a class="reference internal" href="#yc_lockbox._models.INewSecretPayloadEntry" title="yc_lockbox._models.INewSecretPayloadEntry"><code class="xref py py-class docutils literal notranslate"><span class="pre">INewSecretPayloadEntry</span></code></a><span class="pre">]</span></em><em class="property"> <span class="pre">[Required]</span></em><em class="property"> <span class="pre">(alias</span> <span class="pre">'versionPayloadEntries')</span></em><a class="headerlink" href="#yc_lockbox._models.INewSecret.version_payload_entries" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class pydantic_model">
+<dt class="sig sig-object py" id="yc_lockbox._models.INewSecretVersion">
+<em class="property"><span class="pre">pydantic</span> <span class="pre">model</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">yc_lockbox._models.</span></span><span class="sig-name descname"><span class="pre">INewSecretVersion</span></span><a class="reference internal" href="../_modules/yc_lockbox/_models.html#INewSecretVersion"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#yc_lockbox._models.INewSecretVersion" title="Link to this definition">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Fields<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><a class="reference internal" href="#yc_lockbox._models.INewSecretVersion.base_version_id" title="yc_lockbox._models.INewSecretVersion.base_version_id"><code class="xref py py-obj docutils literal notranslate"><span class="pre">base_version_id</span> <span class="pre">(str</span> <span class="pre">|</span> <span class="pre">None)</span></code></a></p></li>
+<li><p><a class="reference internal" href="#yc_lockbox._models.INewSecretVersion.description" title="yc_lockbox._models.INewSecretVersion.description"><code class="xref py py-obj docutils literal notranslate"><span class="pre">description</span> <span class="pre">(str</span> <span class="pre">|</span> <span class="pre">None)</span></code></a></p></li>
+<li><p><a class="reference internal" href="#yc_lockbox._models.INewSecretVersion.payload_entries" title="yc_lockbox._models.INewSecretVersion.payload_entries"><code class="xref py py-obj docutils literal notranslate"><span class="pre">payload_entries</span> <span class="pre">(list[yc_lockbox._models.INewSecretPayloadEntry])</span></code></a></p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="yc_lockbox._models.INewSecretVersion.base_version_id">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">base_version_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code> <span class="pre">|</span> <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"> <span class="pre">(alias</span> <span class="pre">'baseVersionId')</span></em><a class="headerlink" href="#yc_lockbox._models.INewSecretVersion.base_version_id" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="yc_lockbox._models.INewSecretVersion.description">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">description</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code> <span class="pre">|</span> <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#yc_lockbox._models.INewSecretVersion.description" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="yc_lockbox._models.INewSecretVersion.payload_entries">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">payload_entries</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code><span class="pre">[</span><a class="reference internal" href="#yc_lockbox._models.INewSecretPayloadEntry" title="yc_lockbox._models.INewSecretPayloadEntry"><code class="xref py py-class docutils literal notranslate"><span class="pre">INewSecretPayloadEntry</span></code></a><span class="pre">]</span></em><em class="property"> <span class="pre">[Required]</span></em><em class="property"> <span class="pre">(alias</span> <span class="pre">'payloadEntries')</span></em><a class="headerlink" href="#yc_lockbox._models.INewSecretVersion.payload_entries" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class pydantic_model">
+<dt class="sig sig-object py" id="yc_lockbox._models.INewSecretPayloadEntry">
+<em class="property"><span class="pre">pydantic</span> <span class="pre">model</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">yc_lockbox._models.</span></span><span class="sig-name descname"><span class="pre">INewSecretPayloadEntry</span></span><a class="reference internal" href="../_modules/yc_lockbox/_models.html#INewSecretPayloadEntry"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#yc_lockbox._models.INewSecretPayloadEntry" title="Link to this definition">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Fields<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><a class="reference internal" href="#yc_lockbox._models.INewSecretPayloadEntry.binary_value" title="yc_lockbox._models.INewSecretPayloadEntry.binary_value"><code class="xref py py-obj docutils literal notranslate"><span class="pre">binary_value</span> <span class="pre">(str</span> <span class="pre">|</span> <span class="pre">None)</span></code></a></p></li>
+<li><p><a class="reference internal" href="#yc_lockbox._models.INewSecretPayloadEntry.key" title="yc_lockbox._models.INewSecretPayloadEntry.key"><code class="xref py py-obj docutils literal notranslate"><span class="pre">key</span> <span class="pre">(str)</span></code></a></p></li>
+<li><p><a class="reference internal" href="#yc_lockbox._models.INewSecretPayloadEntry.text_value" title="yc_lockbox._models.INewSecretPayloadEntry.text_value"><code class="xref py py-obj docutils literal notranslate"><span class="pre">text_value</span> <span class="pre">(str</span> <span class="pre">|</span> <span class="pre">None)</span></code></a></p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="yc_lockbox._models.INewSecretPayloadEntry.binary_value">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">binary_value</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code> <span class="pre">|</span> <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"> <span class="pre">(alias</span> <span class="pre">'binaryValue')</span></em><a class="headerlink" href="#yc_lockbox._models.INewSecretPayloadEntry.binary_value" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="yc_lockbox._models.INewSecretPayloadEntry.key">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">key</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></em><em class="property"> <span class="pre">[Required]</span></em><a class="headerlink" href="#yc_lockbox._models.INewSecretPayloadEntry.key" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="yc_lockbox._models.INewSecretPayloadEntry.text_value">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">text_value</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code> <span class="pre">|</span> <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"> <span class="pre">(alias</span> <span class="pre">'textValue')</span></em><a class="headerlink" href="#yc_lockbox._models.INewSecretPayloadEntry.text_value" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class pydantic_model">
+<dt class="sig sig-object py" id="yc_lockbox._models.IUpdateSecret">
+<em class="property"><span class="pre">pydantic</span> <span class="pre">model</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">yc_lockbox._models.</span></span><span class="sig-name descname"><span class="pre">IUpdateSecret</span></span><a class="reference internal" href="../_modules/yc_lockbox/_models.html#IUpdateSecret"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#yc_lockbox._models.IUpdateSecret" title="Link to this definition">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Fields<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><a class="reference internal" href="#yc_lockbox._models.IUpdateSecret.deletion_protection" title="yc_lockbox._models.IUpdateSecret.deletion_protection"><code class="xref py py-obj docutils literal notranslate"><span class="pre">deletion_protection</span> <span class="pre">(bool</span> <span class="pre">|</span> <span class="pre">None)</span></code></a></p></li>
+<li><p><a class="reference internal" href="#yc_lockbox._models.IUpdateSecret.description" title="yc_lockbox._models.IUpdateSecret.description"><code class="xref py py-obj docutils literal notranslate"><span class="pre">description</span> <span class="pre">(str</span> <span class="pre">|</span> <span class="pre">None)</span></code></a></p></li>
+<li><p><a class="reference internal" href="#yc_lockbox._models.IUpdateSecret.labels" title="yc_lockbox._models.IUpdateSecret.labels"><code class="xref py py-obj docutils literal notranslate"><span class="pre">labels</span> <span class="pre">(dict[str,</span> <span class="pre">str]</span> <span class="pre">|</span> <span class="pre">None)</span></code></a></p></li>
+<li><p><a class="reference internal" href="#yc_lockbox._models.IUpdateSecret.name" title="yc_lockbox._models.IUpdateSecret.name"><code class="xref py py-obj docutils literal notranslate"><span class="pre">name</span> <span class="pre">(str</span> <span class="pre">|</span> <span class="pre">None)</span></code></a></p></li>
+<li><p><a class="reference internal" href="#yc_lockbox._models.IUpdateSecret.update_mask" title="yc_lockbox._models.IUpdateSecret.update_mask"><code class="xref py py-obj docutils literal notranslate"><span class="pre">update_mask</span> <span class="pre">(str)</span></code></a></p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="yc_lockbox._models.IUpdateSecret.deletion_protection">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">deletion_protection</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code> <span class="pre">|</span> <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"> <span class="pre">(alias</span> <span class="pre">'deletionProtection')</span></em><a class="headerlink" href="#yc_lockbox._models.IUpdateSecret.deletion_protection" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="yc_lockbox._models.IUpdateSecret.description">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">description</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code> <span class="pre">|</span> <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#yc_lockbox._models.IUpdateSecret.description" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="yc_lockbox._models.IUpdateSecret.labels">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">labels</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code><span class="pre">[</span><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code><span class="pre">,</span> <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code><span class="pre">]</span> <span class="pre">|</span> <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#yc_lockbox._models.IUpdateSecret.labels" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="yc_lockbox._models.IUpdateSecret.name">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code> <span class="pre">|</span> <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#yc_lockbox._models.IUpdateSecret.name" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="yc_lockbox._models.IUpdateSecret.update_mask">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">update_mask</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></em><em class="property"> <span class="pre">[Required]</span></em><em class="property"> <span class="pre">(alias</span> <span class="pre">'updateMask')</span></em><a class="headerlink" href="#yc_lockbox._models.IUpdateSecret.update_mask" title="Link to this definition">#</a></dt>
+<dd><p>Comma-separated model field names to be updated.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="exceptions.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Exceptions</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="clients.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Client</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2024, Akim Faskhutdinov
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Models &amp; objects</a><ul>
+<li><a class="reference internal" href="#domain-models">Domain models</a><ul>
+<li><a class="reference internal" href="#yc_lockbox._models.Secret"><code class="docutils literal notranslate"><span class="pre">Secret</span></code></a><ul>
+<li><a class="reference internal" href="#yc_lockbox._models.Secret.created_at"><code class="docutils literal notranslate"><span class="pre">Secret.created_at</span></code></a></li>
+<li><a class="reference internal" href="#yc_lockbox._models.Secret.current_version"><code class="docutils literal notranslate"><span class="pre">Secret.current_version</span></code></a></li>
+<li><a class="reference internal" href="#yc_lockbox._models.Secret.deletion_protection"><code class="docutils literal notranslate"><span class="pre">Secret.deletion_protection</span></code></a></li>
+<li><a class="reference internal" href="#yc_lockbox._models.Secret.description"><code class="docutils literal notranslate"><span class="pre">Secret.description</span></code></a></li>
+<li><a class="reference internal" href="#yc_lockbox._models.Secret.folder_id"><code class="docutils literal notranslate"><span class="pre">Secret.folder_id</span></code></a></li>
+<li><a class="reference internal" href="#yc_lockbox._models.Secret.id"><code class="docutils literal notranslate"><span class="pre">Secret.id</span></code></a></li>
+<li><a class="reference internal" href="#yc_lockbox._models.Secret.kms_key_id"><code class="docutils literal notranslate"><span class="pre">Secret.kms_key_id</span></code></a></li>
+<li><a class="reference internal" href="#yc_lockbox._models.Secret.labels"><code class="docutils literal notranslate"><span class="pre">Secret.labels</span></code></a></li>
+<li><a class="reference internal" href="#yc_lockbox._models.Secret.name"><code class="docutils literal notranslate"><span class="pre">Secret.name</span></code></a></li>
+<li><a class="reference internal" href="#yc_lockbox._models.Secret.status"><code class="docutils literal notranslate"><span class="pre">Secret.status</span></code></a></li>
+<li><a class="reference internal" href="#yc_lockbox._models.Secret.activate"><code class="docutils literal notranslate"><span class="pre">Secret.activate()</span></code></a></li>
+<li><a class="reference internal" href="#yc_lockbox._models.Secret.add_version"><code class="docutils literal notranslate"><span class="pre">Secret.add_version()</span></code></a></li>
+<li><a class="reference internal" href="#yc_lockbox._models.Secret.cancel_version_destruction"><code class="docutils literal notranslate"><span class="pre">Secret.cancel_version_destruction()</span></code></a></li>
+<li><a class="reference internal" href="#yc_lockbox._models.Secret.deactivate"><code class="docutils literal notranslate"><span class="pre">Secret.deactivate()</span></code></a></li>
+<li><a class="reference internal" href="#yc_lockbox._models.Secret.delete"><code class="docutils literal notranslate"><span class="pre">Secret.delete()</span></code></a></li>
+<li><a class="reference internal" href="#yc_lockbox._models.Secret.list_versions"><code class="docutils literal notranslate"><span class="pre">Secret.list_versions()</span></code></a></li>
+<li><a class="reference internal" href="#yc_lockbox._models.Secret.payload"><code class="docutils literal notranslate"><span class="pre">Secret.payload()</span></code></a></li>
+<li><a class="reference internal" href="#yc_lockbox._models.Secret.refresh"><code class="docutils literal notranslate"><span class="pre">Secret.refresh()</span></code></a></li>
+<li><a class="reference internal" href="#yc_lockbox._models.Secret.schedule_version_destruction"><code class="docutils literal notranslate"><span class="pre">Secret.schedule_version_destruction()</span></code></a></li>
+<li><a class="reference internal" href="#yc_lockbox._models.Secret.update"><code class="docutils literal notranslate"><span class="pre">Secret.update()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#yc_lockbox._models.SecretVersion"><code class="docutils literal notranslate"><span class="pre">SecretVersion</span></code></a><ul>
+<li><a class="reference internal" href="#yc_lockbox._models.SecretVersion.created_at"><code class="docutils literal notranslate"><span class="pre">SecretVersion.created_at</span></code></a></li>
+<li><a class="reference internal" href="#yc_lockbox._models.SecretVersion.description"><code class="docutils literal notranslate"><span class="pre">SecretVersion.description</span></code></a></li>
+<li><a class="reference internal" href="#yc_lockbox._models.SecretVersion.destroy_at"><code class="docutils literal notranslate"><span class="pre">SecretVersion.destroy_at</span></code></a></li>
+<li><a class="reference internal" href="#yc_lockbox._models.SecretVersion.id"><code class="docutils literal notranslate"><span class="pre">SecretVersion.id</span></code></a></li>
+<li><a class="reference internal" href="#yc_lockbox._models.SecretVersion.payload_entry_keys"><code class="docutils literal notranslate"><span class="pre">SecretVersion.payload_entry_keys</span></code></a></li>
+<li><a class="reference internal" href="#yc_lockbox._models.SecretVersion.secret_id"><code class="docutils literal notranslate"><span class="pre">SecretVersion.secret_id</span></code></a></li>
+<li><a class="reference internal" href="#yc_lockbox._models.SecretVersion.status"><code class="docutils literal notranslate"><span class="pre">SecretVersion.status</span></code></a></li>
+<li><a class="reference internal" href="#yc_lockbox._models.SecretVersion.cancel_version_destruction"><code class="docutils literal notranslate"><span class="pre">SecretVersion.cancel_version_destruction()</span></code></a></li>
+<li><a class="reference internal" href="#yc_lockbox._models.SecretVersion.payload"><code class="docutils literal notranslate"><span class="pre">SecretVersion.payload()</span></code></a></li>
+<li><a class="reference internal" href="#yc_lockbox._models.SecretVersion.schedule_version_destruction"><code class="docutils literal notranslate"><span class="pre">SecretVersion.schedule_version_destruction()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#yc_lockbox._models.SecretPayload"><code class="docutils literal notranslate"><span class="pre">SecretPayload</span></code></a><ul>
+<li><a class="reference internal" href="#yc_lockbox._models.SecretPayload.entries"><code class="docutils literal notranslate"><span class="pre">SecretPayload.entries</span></code></a></li>
+<li><a class="reference internal" href="#yc_lockbox._models.SecretPayload.version_id"><code class="docutils literal notranslate"><span class="pre">SecretPayload.version_id</span></code></a></li>
+<li><a class="reference internal" href="#yc_lockbox._models.SecretPayload.get"><code class="docutils literal notranslate"><span class="pre">SecretPayload.get()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#yc_lockbox._models.SecretPayloadEntry"><code class="docutils literal notranslate"><span class="pre">SecretPayloadEntry</span></code></a><ul>
+<li><a class="reference internal" href="#yc_lockbox._models.SecretPayloadEntry.binary_value"><code class="docutils literal notranslate"><span class="pre">SecretPayloadEntry.binary_value</span></code></a></li>
+<li><a class="reference internal" href="#yc_lockbox._models.SecretPayloadEntry.key"><code class="docutils literal notranslate"><span class="pre">SecretPayloadEntry.key</span></code></a></li>
+<li><a class="reference internal" href="#yc_lockbox._models.SecretPayloadEntry.text_value"><code class="docutils literal notranslate"><span class="pre">SecretPayloadEntry.text_value</span></code></a></li>
+<li><a class="reference internal" href="#yc_lockbox._models.SecretPayloadEntry.reveal_binary_value"><code class="docutils literal notranslate"><span class="pre">SecretPayloadEntry.reveal_binary_value()</span></code></a></li>
+<li><a class="reference internal" href="#yc_lockbox._models.SecretPayloadEntry.reveal_text_value"><code class="docutils literal notranslate"><span class="pre">SecretPayloadEntry.reveal_text_value()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#upsert-models">Upsert models</a><ul>
+<li><a class="reference internal" href="#yc_lockbox._models.INewSecret"><code class="docutils literal notranslate"><span class="pre">INewSecret</span></code></a><ul>
+<li><a class="reference internal" href="#yc_lockbox._models.INewSecret.deletion_protection"><code class="docutils literal notranslate"><span class="pre">INewSecret.deletion_protection</span></code></a></li>
+<li><a class="reference internal" href="#yc_lockbox._models.INewSecret.description"><code class="docutils literal notranslate"><span class="pre">INewSecret.description</span></code></a></li>
+<li><a class="reference internal" href="#yc_lockbox._models.INewSecret.folder_id"><code class="docutils literal notranslate"><span class="pre">INewSecret.folder_id</span></code></a></li>
+<li><a class="reference internal" href="#yc_lockbox._models.INewSecret.kms_key_id"><code class="docutils literal notranslate"><span class="pre">INewSecret.kms_key_id</span></code></a></li>
+<li><a class="reference internal" href="#yc_lockbox._models.INewSecret.labels"><code class="docutils literal notranslate"><span class="pre">INewSecret.labels</span></code></a></li>
+<li><a class="reference internal" href="#yc_lockbox._models.INewSecret.name"><code class="docutils literal notranslate"><span class="pre">INewSecret.name</span></code></a></li>
+<li><a class="reference internal" href="#yc_lockbox._models.INewSecret.version_description"><code class="docutils literal notranslate"><span class="pre">INewSecret.version_description</span></code></a></li>
+<li><a class="reference internal" href="#yc_lockbox._models.INewSecret.version_payload_entries"><code class="docutils literal notranslate"><span class="pre">INewSecret.version_payload_entries</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#yc_lockbox._models.INewSecretVersion"><code class="docutils literal notranslate"><span class="pre">INewSecretVersion</span></code></a><ul>
+<li><a class="reference internal" href="#yc_lockbox._models.INewSecretVersion.base_version_id"><code class="docutils literal notranslate"><span class="pre">INewSecretVersion.base_version_id</span></code></a></li>
+<li><a class="reference internal" href="#yc_lockbox._models.INewSecretVersion.description"><code class="docutils literal notranslate"><span class="pre">INewSecretVersion.description</span></code></a></li>
+<li><a class="reference internal" href="#yc_lockbox._models.INewSecretVersion.payload_entries"><code class="docutils literal notranslate"><span class="pre">INewSecretVersion.payload_entries</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#yc_lockbox._models.INewSecretPayloadEntry"><code class="docutils literal notranslate"><span class="pre">INewSecretPayloadEntry</span></code></a><ul>
+<li><a class="reference internal" href="#yc_lockbox._models.INewSecretPayloadEntry.binary_value"><code class="docutils literal notranslate"><span class="pre">INewSecretPayloadEntry.binary_value</span></code></a></li>
+<li><a class="reference internal" href="#yc_lockbox._models.INewSecretPayloadEntry.key"><code class="docutils literal notranslate"><span class="pre">INewSecretPayloadEntry.key</span></code></a></li>
+<li><a class="reference internal" href="#yc_lockbox._models.INewSecretPayloadEntry.text_value"><code class="docutils literal notranslate"><span class="pre">INewSecretPayloadEntry.text_value</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#yc_lockbox._models.IUpdateSecret"><code class="docutils literal notranslate"><span class="pre">IUpdateSecret</span></code></a><ul>
+<li><a class="reference internal" href="#yc_lockbox._models.IUpdateSecret.deletion_protection"><code class="docutils literal notranslate"><span class="pre">IUpdateSecret.deletion_protection</span></code></a></li>
+<li><a class="reference internal" href="#yc_lockbox._models.IUpdateSecret.description"><code class="docutils literal notranslate"><span class="pre">IUpdateSecret.description</span></code></a></li>
+<li><a class="reference internal" href="#yc_lockbox._models.IUpdateSecret.labels"><code class="docutils literal notranslate"><span class="pre">IUpdateSecret.labels</span></code></a></li>
+<li><a class="reference internal" href="#yc_lockbox._models.IUpdateSecret.name"><code class="docutils literal notranslate"><span class="pre">IUpdateSecret.name</span></code></a></li>
+<li><a class="reference internal" href="#yc_lockbox._models.IUpdateSecret.update_mask"><code class="docutils literal notranslate"><span class="pre">IUpdateSecret.update_mask</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script src="../_static/documentation_options.js?v=01f34227"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/scripts/furo.js?v=32e29ea5"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    </body>
+</html>

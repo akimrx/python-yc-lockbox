@@ -1,0 +1,678 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="../">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="Models &amp; objects" href="models.html" /><link rel="prev" title="Yandex Lockbox Python client documentation" href="../index.html" />
+
+    <!-- Generated with Sphinx 7.2.6 and Furo 2024.01.29 -->
+        <title>Client - Yandex Lockbox Python client documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=135e06be" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/autodoc_pydantic.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?v=36a5483c" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../index.html"><div class="brand">Yandex Lockbox Python client documentation</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../index.html">
+  
+  
+  <span class="sidebar-brand-text">Yandex Lockbox Python client documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">Content:</span></p>
+<ul class="current">
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="models.html">Models &amp; objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="exceptions.html">Exceptions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="adapters.html">Adapters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="abstracts.html">Abstracts</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main">
+          <section id="client">
+<h1>Client<a class="headerlink" href="#client" title="Link to this heading">#</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="yc_lockbox.YandexLockboxClient">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">yc_lockbox.</span></span><span class="sig-name descname"><span class="pre">YandexLockboxClient</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">credentials</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">auth_client=&lt;class</span> <span class="pre">'yc_lockbox._auth.YandexAuthClient'&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">adapter=&lt;class</span> <span class="pre">'yc_lockbox._adapters.HTTPAdapter'&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lockbox_base_url=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">payload_lockbox_base_url=None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/yc_lockbox/_lockbox.html#YandexLockboxClient"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#yc_lockbox.YandexLockboxClient" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">AbstractYandexLockboxClient</span></code></p>
+<p>Yandex Lockbox secrets vault client.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>credentials</strong> – Credentials for authenticate requests.
+Allowed types: service account key, OAuth token, IAM token.</p></li>
+<li><p><strong>auth_client</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Type</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">AbstractYandexAuthClient</span></code>]]</span>) – Optional client implementation for authenticate requests.
+Defaults to <code class="docutils literal notranslate"><span class="pre">YandexAuthClient</span></code>.</p></li>
+<li><p><strong>adapter</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Type</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">AbstractHTTPAdapter</span></code>]]</span>) – HTTP adapter for communicate with Yandex Cloud API.</p></li>
+<li><p><strong>lockbox_base_url</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>]</span>) – Lockbox base URL without resource path.</p></li>
+<li><p><strong>payload_lockbox_base_url</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>]</span>) – Lockbox payload base URL without resource path.</p></li>
+<li><p><strong>auth_base_url</strong> – IAM base URL without resource path.</p></li>
+</ul>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>All the values of the secrets are masked, i.e. looks like <code class="docutils literal notranslate"><span class="pre">***********</span></code>.
+To get the real value of the secret, you need to call the injected methods
+<code class="xref py py-func docutils literal notranslate"><span class="pre">reveal_text_value()</span></code> or <code class="xref py py-func docutils literal notranslate"><span class="pre">reveal_binary_value()</span></code>.</p>
+</div>
+<p>Usage:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">yc_lockbox</span> <span class="kn">import</span> <span class="n">YandexLockboxClient</span><span class="p">,</span> <span class="n">Secret</span>
+
+<span class="n">lockbox</span> <span class="o">=</span> <span class="n">YandexLockboxClient</span><span class="p">(</span><span class="s2">&quot;y0_AgAEXXXXXXXXXXXXXXXXXXXXXXXXX&quot;</span><span class="p">)</span>  <span class="c1"># OAuth or IAM token</span>
+
+<span class="n">secret</span><span class="p">:</span> <span class="n">Secret</span> <span class="o">=</span> <span class="n">lockbox</span><span class="o">.</span><span class="n">get_secret</span><span class="p">(</span><span class="s2">&quot;e6xxxxxxxxxxxxxxxx&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">secret</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">secret</span><span class="o">.</span><span class="n">status</span><span class="p">,</span> <span class="n">secret</span><span class="o">.</span><span class="n">description</span><span class="p">)</span>
+
+<span class="n">payload</span> <span class="o">=</span> <span class="n">secret</span><span class="o">.</span><span class="n">payload</span><span class="p">()</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">value</span> <span class="o">=</span> <span class="n">payload</span><span class="p">[</span><span class="s2">&quot;mykey&quot;</span><span class="p">]</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">value</span><span class="o">.</span><span class="n">reveal_text_value</span><span class="p">())</span>
+<span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Invalid key!&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">payload</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;foo&quot;</span><span class="p">))</span>  <span class="c1"># None if not exists without raising exception</span>
+<span class="n">entry</span> <span class="o">=</span> <span class="n">payload</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>  <span class="c1"># similar to payload.entries[0]</span>
+</pre></div>
+</div>
+<p>Authenticate via service account key:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">json</span>
+
+<span class="c1"># generate json key for your SA</span>
+<span class="c1"># yc iam key create --service-account-name my-sa --output key.json</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;./key.json&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">infile</span><span class="p">:</span>
+    <span class="n">credentials</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">infile</span><span class="p">)</span>
+
+<span class="n">lockbox</span> <span class="o">=</span> <span class="n">YandexLockboxClient</span><span class="p">(</span><span class="n">credentials</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="yc_lockbox.YandexLockboxClient.activate_secret">
+<span class="sig-name descname"><span class="pre">activate_secret</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">secret_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">raise_for_status</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/yc_lockbox/_lockbox.html#YandexLockboxClient.activate_secret"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#yc_lockbox.YandexLockboxClient.activate_secret" title="Link to this definition">#</a></dt>
+<dd><p>Activates the specified secret.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>secret_id</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – Secret indentifier.</p></li>
+<li><p><strong>raise_for_status</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></span>) – If set to <code class="docutils literal notranslate"><span class="pre">False</span></code> returns <code class="xref py py-class docutils literal notranslate"><span class="pre">YandexCloudError</span></code> instead throw exception.
+Defaults to <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Operation</span></code> | <code class="xref py py-class docutils literal notranslate"><span class="pre">YandexCloudError</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="yc_lockbox.YandexLockboxClient.add_secret_version">
+<span class="sig-name descname"><span class="pre">add_secret_version</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">secret_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">version</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">raise_for_status</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/yc_lockbox/_lockbox.html#YandexLockboxClient.add_secret_version"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#yc_lockbox.YandexLockboxClient.add_secret_version" title="Link to this definition">#</a></dt>
+<dd><p>Adds new version based on a previous one.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>secret_id</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – Secret indentifier.</p></li>
+<li><p><strong>version</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="models.html#yc_lockbox._models.INewSecretVersion" title="yc_lockbox._models.INewSecretVersion"><code class="xref py py-class docutils literal notranslate"><span class="pre">INewSecretVersion</span></code></a></span>) – A new version object.</p></li>
+<li><p><strong>raise_for_status</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></span>) – If set to <code class="docutils literal notranslate"><span class="pre">False</span></code> returns <code class="xref py py-class docutils literal notranslate"><span class="pre">YandexCloudError</span></code> instead throw exception.
+Defaults to <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Operation</span></code> | <code class="xref py py-class docutils literal notranslate"><span class="pre">YandexCloudError</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="yc_lockbox.YandexLockboxClient.auth_headers">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">auth_headers</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#yc_lockbox.YandexLockboxClient.auth_headers" title="Link to this definition">#</a></dt>
+<dd><p>Returns headers for authenticate.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="yc_lockbox.YandexLockboxClient.cancel_secret_version_destruction">
+<span class="sig-name descname"><span class="pre">cancel_secret_version_destruction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">secret_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">version_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">raise_for_status</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/yc_lockbox/_lockbox.html#YandexLockboxClient.cancel_secret_version_destruction"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#yc_lockbox.YandexLockboxClient.cancel_secret_version_destruction" title="Link to this definition">#</a></dt>
+<dd><p>Cancels previously scheduled version destruction, if the version hasn’t been destroyed yet.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>secret_id</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – Secret indentifier.</p></li>
+<li><p><strong>version_id</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – Secret version id to cancel destruction.</p></li>
+<li><p><strong>raise_for_status</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></span>) – If set to <code class="docutils literal notranslate"><span class="pre">False</span></code> returns <code class="xref py py-class docutils literal notranslate"><span class="pre">YandexCloudError</span></code> instead throw exception.
+Defaults to <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Operation</span></code> | <code class="xref py py-class docutils literal notranslate"><span class="pre">YandexCloudError</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="yc_lockbox.YandexLockboxClient.create_secret">
+<span class="sig-name descname"><span class="pre">create_secret</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">secret</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">raise_for_status</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/yc_lockbox/_lockbox.html#YandexLockboxClient.create_secret"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#yc_lockbox.YandexLockboxClient.create_secret" title="Link to this definition">#</a></dt>
+<dd><p>Creates a secret in the specified folder.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>secret</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="models.html#yc_lockbox._models.INewSecret" title="yc_lockbox._models.INewSecret"><code class="xref py py-class docutils literal notranslate"><span class="pre">INewSecret</span></code></a></span>) – A new secret object.</p></li>
+<li><p><strong>raise_for_status</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></span>) – If set to <code class="docutils literal notranslate"><span class="pre">False</span></code> returns <code class="xref py py-class docutils literal notranslate"><span class="pre">YandexCloudError</span></code> instead throw exception.
+Defaults to <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Operation</span></code> | <code class="xref py py-class docutils literal notranslate"><span class="pre">YandexCloudError</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="yc_lockbox.YandexLockboxClient.deactivate_secret">
+<span class="sig-name descname"><span class="pre">deactivate_secret</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">secret_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">raise_for_status</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/yc_lockbox/_lockbox.html#YandexLockboxClient.deactivate_secret"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#yc_lockbox.YandexLockboxClient.deactivate_secret" title="Link to this definition">#</a></dt>
+<dd><p>Deactivate a secret.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>secret_id</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – Secret indentifier.</p></li>
+<li><p><strong>raise_for_status</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></span>) – If set to <code class="docutils literal notranslate"><span class="pre">False</span></code> returns <code class="xref py py-class docutils literal notranslate"><span class="pre">YandexCloudError</span></code> instead throw exception.
+Defaults to <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Operation</span></code> | <code class="xref py py-class docutils literal notranslate"><span class="pre">YandexCloudError</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="yc_lockbox.YandexLockboxClient.delete_secret">
+<span class="sig-name descname"><span class="pre">delete_secret</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">secret_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">raise_for_status</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/yc_lockbox/_lockbox.html#YandexLockboxClient.delete_secret"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#yc_lockbox.YandexLockboxClient.delete_secret" title="Link to this definition">#</a></dt>
+<dd><p>Deletes the specified secret.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>secret_id</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – Secret indentifier.</p></li>
+<li><p><strong>raise_for_status</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></span>) – If set to <code class="docutils literal notranslate"><span class="pre">False</span></code> returns <code class="xref py py-class docutils literal notranslate"><span class="pre">YandexCloudError</span></code> instead throw exception.
+Defaults to <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Operation</span></code> | <code class="xref py py-class docutils literal notranslate"><span class="pre">YandexCloudError</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="yc_lockbox.YandexLockboxClient.get_secret">
+<span class="sig-name descname"><span class="pre">get_secret</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">secret_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">raise_for_status</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/yc_lockbox/_lockbox.html#YandexLockboxClient.get_secret"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#yc_lockbox.YandexLockboxClient.get_secret" title="Link to this definition">#</a></dt>
+<dd><p>Get lockbox secret by ID.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>secret_id</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – Secret identifier.</p></li>
+<li><p><strong>raise_for_status</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></span>) – If set to <code class="docutils literal notranslate"><span class="pre">False</span></code> returns <code class="xref py py-class docutils literal notranslate"><span class="pre">YandexCloudError</span></code> instead throw exception.
+Defaults to <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="models.html#yc_lockbox._models.Secret" title="yc_lockbox._models.Secret"><code class="xref py py-class docutils literal notranslate"><span class="pre">Secret</span></code></a> | <code class="xref py py-class docutils literal notranslate"><span class="pre">YandexCloudError</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="yc_lockbox.YandexLockboxClient.get_secret_payload">
+<span class="sig-name descname"><span class="pre">get_secret_payload</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">secret_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">version_id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">raise_for_status</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/yc_lockbox/_lockbox.html#YandexLockboxClient.get_secret_payload"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#yc_lockbox.YandexLockboxClient.get_secret_payload" title="Link to this definition">#</a></dt>
+<dd><p>Get lockbox secret payload by ID and optional version.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>secret_id</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – Secret identifier.</p></li>
+<li><p><strong>version_id</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>]</span>) – Secret version. Optional.</p></li>
+<li><p><strong>raise_for_status</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></span>) – If set to <code class="docutils literal notranslate"><span class="pre">False</span></code> returns <code class="xref py py-class docutils literal notranslate"><span class="pre">YandexCloudError</span></code> instead throw exception.
+Defaults to <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="models.html#yc_lockbox._models.SecretPayload" title="yc_lockbox._models.SecretPayload"><code class="xref py py-class docutils literal notranslate"><span class="pre">SecretPayload</span></code></a> | <code class="xref py py-class docutils literal notranslate"><span class="pre">YandexCloudError</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="yc_lockbox.YandexLockboxClient.list_secret_access_bindings">
+<span class="sig-name descname"><span class="pre">list_secret_access_bindings</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/yc_lockbox/_lockbox.html#YandexLockboxClient.list_secret_access_bindings"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#yc_lockbox.YandexLockboxClient.list_secret_access_bindings" title="Link to this definition">#</a></dt>
+<dd><p>Not ready yet.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="yc_lockbox.YandexLockboxClient.list_secret_operations">
+<span class="sig-name descname"><span class="pre">list_secret_operations</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/yc_lockbox/_lockbox.html#YandexLockboxClient.list_secret_operations"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#yc_lockbox.YandexLockboxClient.list_secret_operations" title="Link to this definition">#</a></dt>
+<dd><p>Not ready yet.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="yc_lockbox.YandexLockboxClient.list_secret_versions">
+<span class="sig-name descname"><span class="pre">list_secret_versions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">secret_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">page_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">page_token</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">raise_for_status</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">iterator</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/yc_lockbox/_lockbox.html#YandexLockboxClient.list_secret_versions"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#yc_lockbox.YandexLockboxClient.list_secret_versions" title="Link to this definition">#</a></dt>
+<dd><p>Retrieves the list of versions of the specified secret.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>secret_id</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – Secret identifier.</p></li>
+<li><p><strong>page_size</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span>) – The maximum number of results per page to return.
+If the number of available results is larger than <code class="docutils literal notranslate"><span class="pre">page_size</span></code>,
+the service returns a <code class="docutils literal notranslate"><span class="pre">next_page_token</span></code> that can be used to get
+the next page of results in subsequent list requests.
+Default value: <code class="docutils literal notranslate"><span class="pre">100</span></code>.
+The maximum value is <code class="docutils literal notranslate"><span class="pre">1000</span></code>.</p></li>
+<li><p><strong>page_token</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>]</span>) – Page token. To get the next page of results, set <code class="docutils literal notranslate"><span class="pre">page_token</span></code>
+to the <code class="docutils literal notranslate"><span class="pre">next_page_token</span></code> returned by a previous list request.</p></li>
+<li><p><strong>iterator</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></span>) – Returns all data as iterator (generator) instead paginated result.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">SecretVersionsList</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">Iterator</span></code>[<a class="reference internal" href="models.html#yc_lockbox._models.SecretVersion" title="yc_lockbox._models.SecretVersion"><code class="xref py py-class docutils literal notranslate"><span class="pre">SecretVersion</span></code></a>], <code class="xref py py-class docutils literal notranslate"><span class="pre">YandexCloudError</span></code>]</span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="yc_lockbox.YandexLockboxClient.list_secrets">
+<span class="sig-name descname"><span class="pre">list_secrets</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">folder_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">page_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">page_token</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">raise_for_status</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">iterator</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/yc_lockbox/_lockbox.html#YandexLockboxClient.list_secrets"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#yc_lockbox.YandexLockboxClient.list_secrets" title="Link to this definition">#</a></dt>
+<dd><p>Retrieves the list of secrets in the specified folder.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>folder_id</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – ID of the folder to list secrets in.</p></li>
+<li><p><strong>page_size</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span>) – The maximum number of results per page to return.
+If the number of available results is larger than <code class="docutils literal notranslate"><span class="pre">page_size</span></code>,
+the service returns a <code class="docutils literal notranslate"><span class="pre">next_page_token</span></code> that can be used to get
+the next page of results in subsequent list requests.
+Default value: <code class="docutils literal notranslate"><span class="pre">100</span></code>.
+The maximum value is <code class="docutils literal notranslate"><span class="pre">1000</span></code>.</p></li>
+<li><p><strong>page_token</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>]</span>) – Page token. To get the next page of results, set <code class="docutils literal notranslate"><span class="pre">page_token</span></code>
+to the <code class="docutils literal notranslate"><span class="pre">next_page_token</span></code> returned by a previous list request.</p></li>
+<li><p><strong>iterator</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></span>) – Returns all data as iterator (generator) instead paginated result.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">SecretsList</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">Iterator</span></code>[<a class="reference internal" href="models.html#yc_lockbox._models.Secret" title="yc_lockbox._models.Secret"><code class="xref py py-class docutils literal notranslate"><span class="pre">Secret</span></code></a>], <code class="xref py py-class docutils literal notranslate"><span class="pre">YandexCloudError</span></code>]</span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="yc_lockbox.YandexLockboxClient.schedule_secret_version_destruction">
+<span class="sig-name descname"><span class="pre">schedule_secret_version_destruction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">secret_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">version_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pending_period</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">604800</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">raise_for_status</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/yc_lockbox/_lockbox.html#YandexLockboxClient.schedule_secret_version_destruction"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#yc_lockbox.YandexLockboxClient.schedule_secret_version_destruction" title="Link to this definition">#</a></dt>
+<dd><p>Schedules the specified version for destruction.
+Scheduled destruction can be cancelled with the <a class="reference internal" href="#yc_lockbox.YandexLockboxClient.cancel_secret_version_destruction" title="yc_lockbox.YandexLockboxClient.cancel_secret_version_destruction"><code class="xref py py-func docutils literal notranslate"><span class="pre">cancel_secret_version_destruction()</span></code></a> method.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>secret_id</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – Secret indentifier.</p></li>
+<li><p><strong>version_id</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – ID of the version to be destroyed.</p></li>
+<li><p><strong>pending_period</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span>) – Time interval in seconds between the version destruction request and actual destruction.
+Default value: <code class="docutils literal notranslate"><span class="pre">604800</span></code> (i.e. 7 days).</p></li>
+<li><p><strong>raise_for_status</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></span>) – If set to <code class="docutils literal notranslate"><span class="pre">False</span></code> returns <code class="xref py py-class docutils literal notranslate"><span class="pre">YandexCloudError</span></code> instead throw exception.
+Defaults to <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Operation</span></code> | <code class="xref py py-class docutils literal notranslate"><span class="pre">YandexCloudError</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="yc_lockbox.YandexLockboxClient.set_secret_access_bindings">
+<span class="sig-name descname"><span class="pre">set_secret_access_bindings</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/yc_lockbox/_lockbox.html#YandexLockboxClient.set_secret_access_bindings"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#yc_lockbox.YandexLockboxClient.set_secret_access_bindings" title="Link to this definition">#</a></dt>
+<dd><p>Not ready yet.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="yc_lockbox.YandexLockboxClient.update_secret">
+<span class="sig-name descname"><span class="pre">update_secret</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">secret_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">raise_for_status</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/yc_lockbox/_lockbox.html#YandexLockboxClient.update_secret"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#yc_lockbox.YandexLockboxClient.update_secret" title="Link to this definition">#</a></dt>
+<dd><p>Updates the specified secret.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>secret_id</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – Secret identifier.</p></li>
+<li><p><strong>data</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="models.html#yc_lockbox._models.IUpdateSecret" title="yc_lockbox._models.IUpdateSecret"><code class="xref py py-class docutils literal notranslate"><span class="pre">IUpdateSecret</span></code></a></span>) – A new data for the secret as object.
+Important. Field mask that specifies which attributes of the secret are going to be updated.
+A comma-separated names off ALL fields to be updated. Only the specified fields will be changed.
+The others will be left untouched. If the field is specified in updateMask and no value for
+that field was sent in the request, the field’s value will be reset to the default.
+The default value for most fields is null or 0.
+If <code class="docutils literal notranslate"><span class="pre">updateMask</span></code> is not sent in the request, all fields values will be updated.
+Fields specified in the request will be updated to provided values. The rest of the fields will be reset to the default.</p></li>
+<li><p><strong>raise_for_status</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></span>) – If set to <code class="docutils literal notranslate"><span class="pre">False</span></code> returns <code class="xref py py-class docutils literal notranslate"><span class="pre">YandexCloudError</span></code> instead throw exception.
+Defaults to <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Operation</span></code> | <code class="xref py py-class docutils literal notranslate"><span class="pre">YandexCloudError</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="yc_lockbox.YandexLockboxClient.update_secret_access_bindings">
+<span class="sig-name descname"><span class="pre">update_secret_access_bindings</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/yc_lockbox/_lockbox.html#YandexLockboxClient.update_secret_access_bindings"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#yc_lockbox.YandexLockboxClient.update_secret_access_bindings" title="Link to this definition">#</a></dt>
+<dd><p>Not ready yet.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="yc_lockbox._auth.YandexAuthClient">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">yc_lockbox._auth.</span></span><span class="sig-name descname"><span class="pre">YandexAuthClient</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">credentials</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">auth_base_url</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/yc_lockbox/_auth.html#YandexAuthClient"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#yc_lockbox._auth.YandexAuthClient" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">AbstractYandexAuthClient</span></code></p>
+<p>This is a simple client that allows you to get an up-to-date IAM token
+to make authenticated requests to Yandex Cloud.
+If you pass a IAM token as credentials, you need to take care
+of the freshness of the token yourself.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>credentials</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code> | <code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>]</span>) – Credentials for authenticate requests.
+Allowed types: service account key, OAuth token, IAM token.</p></li>
+<li><p><strong>auth_base_url</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>]</span>) – Base IAM url without resource path URL.</p></li>
+</ul>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Important.
+This client works only in synchronous mode for backward compatibility.</p>
+</div>
+<dl class="py property">
+<dt class="sig sig-object py" id="yc_lockbox._auth.YandexAuthClient.adapter">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">adapter</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">HTTPAdapter</span></em><a class="headerlink" href="#yc_lockbox._auth.YandexAuthClient.adapter" title="Link to this definition">#</a></dt>
+<dd><p>Returns HTTP adapter for communicate with Yandex Cloud.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="yc_lockbox._auth.YandexAuthClient.get_iam_token">
+<span class="sig-name descname"><span class="pre">get_iam_token</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/yc_lockbox/_auth.html#YandexAuthClient.get_iam_token"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#yc_lockbox._auth.YandexAuthClient.get_iam_token" title="Link to this definition">#</a></dt>
+<dd><p>Cacheable (per process session) method for get IAM token from Yandex Cloud.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="models.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Models &amp; objects</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="../index.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Home</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2024, Akim Faskhutdinov
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Client</a><ul>
+<li><a class="reference internal" href="#yc_lockbox.YandexLockboxClient"><code class="docutils literal notranslate"><span class="pre">YandexLockboxClient</span></code></a><ul>
+<li><a class="reference internal" href="#yc_lockbox.YandexLockboxClient.activate_secret"><code class="docutils literal notranslate"><span class="pre">YandexLockboxClient.activate_secret()</span></code></a></li>
+<li><a class="reference internal" href="#yc_lockbox.YandexLockboxClient.add_secret_version"><code class="docutils literal notranslate"><span class="pre">YandexLockboxClient.add_secret_version()</span></code></a></li>
+<li><a class="reference internal" href="#yc_lockbox.YandexLockboxClient.auth_headers"><code class="docutils literal notranslate"><span class="pre">YandexLockboxClient.auth_headers</span></code></a></li>
+<li><a class="reference internal" href="#yc_lockbox.YandexLockboxClient.cancel_secret_version_destruction"><code class="docutils literal notranslate"><span class="pre">YandexLockboxClient.cancel_secret_version_destruction()</span></code></a></li>
+<li><a class="reference internal" href="#yc_lockbox.YandexLockboxClient.create_secret"><code class="docutils literal notranslate"><span class="pre">YandexLockboxClient.create_secret()</span></code></a></li>
+<li><a class="reference internal" href="#yc_lockbox.YandexLockboxClient.deactivate_secret"><code class="docutils literal notranslate"><span class="pre">YandexLockboxClient.deactivate_secret()</span></code></a></li>
+<li><a class="reference internal" href="#yc_lockbox.YandexLockboxClient.delete_secret"><code class="docutils literal notranslate"><span class="pre">YandexLockboxClient.delete_secret()</span></code></a></li>
+<li><a class="reference internal" href="#yc_lockbox.YandexLockboxClient.get_secret"><code class="docutils literal notranslate"><span class="pre">YandexLockboxClient.get_secret()</span></code></a></li>
+<li><a class="reference internal" href="#yc_lockbox.YandexLockboxClient.get_secret_payload"><code class="docutils literal notranslate"><span class="pre">YandexLockboxClient.get_secret_payload()</span></code></a></li>
+<li><a class="reference internal" href="#yc_lockbox.YandexLockboxClient.list_secret_access_bindings"><code class="docutils literal notranslate"><span class="pre">YandexLockboxClient.list_secret_access_bindings()</span></code></a></li>
+<li><a class="reference internal" href="#yc_lockbox.YandexLockboxClient.list_secret_operations"><code class="docutils literal notranslate"><span class="pre">YandexLockboxClient.list_secret_operations()</span></code></a></li>
+<li><a class="reference internal" href="#yc_lockbox.YandexLockboxClient.list_secret_versions"><code class="docutils literal notranslate"><span class="pre">YandexLockboxClient.list_secret_versions()</span></code></a></li>
+<li><a class="reference internal" href="#yc_lockbox.YandexLockboxClient.list_secrets"><code class="docutils literal notranslate"><span class="pre">YandexLockboxClient.list_secrets()</span></code></a></li>
+<li><a class="reference internal" href="#yc_lockbox.YandexLockboxClient.schedule_secret_version_destruction"><code class="docutils literal notranslate"><span class="pre">YandexLockboxClient.schedule_secret_version_destruction()</span></code></a></li>
+<li><a class="reference internal" href="#yc_lockbox.YandexLockboxClient.set_secret_access_bindings"><code class="docutils literal notranslate"><span class="pre">YandexLockboxClient.set_secret_access_bindings()</span></code></a></li>
+<li><a class="reference internal" href="#yc_lockbox.YandexLockboxClient.update_secret"><code class="docutils literal notranslate"><span class="pre">YandexLockboxClient.update_secret()</span></code></a></li>
+<li><a class="reference internal" href="#yc_lockbox.YandexLockboxClient.update_secret_access_bindings"><code class="docutils literal notranslate"><span class="pre">YandexLockboxClient.update_secret_access_bindings()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#yc_lockbox._auth.YandexAuthClient"><code class="docutils literal notranslate"><span class="pre">YandexAuthClient</span></code></a><ul>
+<li><a class="reference internal" href="#yc_lockbox._auth.YandexAuthClient.adapter"><code class="docutils literal notranslate"><span class="pre">YandexAuthClient.adapter</span></code></a></li>
+<li><a class="reference internal" href="#yc_lockbox._auth.YandexAuthClient.get_iam_token"><code class="docutils literal notranslate"><span class="pre">YandexAuthClient.get_iam_token()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script src="../_static/documentation_options.js?v=01f34227"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/scripts/furo.js?v=32e29ea5"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    </body>
+</html>

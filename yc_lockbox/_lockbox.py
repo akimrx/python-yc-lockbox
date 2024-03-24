@@ -353,10 +353,12 @@ class YandexLockboxClient(AbstractYandexLockboxClient):
 
     # TODO: implement
     def list_secret_access_bindings(self, *args, **kwargs):
+        """Not ready yet."""
         raise NotImplementedError
 
     # TODO: implement
     def list_secret_operations(self, *args, **kwargs):
+        """Not ready yet."""
         raise NotImplementedError
 
     def list_secret_versions(
@@ -437,6 +439,7 @@ class YandexLockboxClient(AbstractYandexLockboxClient):
 
     # TODO: implement
     def set_secret_access_bindings(self, *args, **kwargs):
+        """Not ready yet."""
         raise NotImplementedError
 
     def update_secret(
@@ -472,6 +475,7 @@ class YandexLockboxClient(AbstractYandexLockboxClient):
 
     # TODO: implement
     def update_secret_access_bindings(self, *args, **kwargs):
+        """Not ready yet."""
         raise NotImplementedError
 
 

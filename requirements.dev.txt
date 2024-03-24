@@ -13,4 +13,5 @@ sphinx
 sphinx-autodoc-typehints
 sphinx-copybutton
 sphinx-inline-tabs
+autodoc_pydantic
 furo==2024.*

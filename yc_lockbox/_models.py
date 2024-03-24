@@ -11,7 +11,9 @@ logger = logging.getLogger(__name__)
 
 
 class BaseDomainModel(BaseModel):
-    client: AbstractYandexLockboxClient | None = None
+    client: AbstractYandexLockboxClient | None = Field(
+        None, description="Injected lockbox client for call model commands."
+    )
     model_config: ConfigDict = ConfigDict(extra="ignore", arbitrary_types_allowed=True)
 
     def inject_client(self, client: AbstractYandexLockboxClient) -> None:
@@ -33,6 +35,10 @@ class IamTokenResponse(BaseDomainModel):
 
 
 class SecretPayloadEntry(BaseDomainModel):
+    """
+    Domain object that represents an entry in the :class:`SecretPayload`.
+    """
+
     key: str
     text_value: SecretStr | None = Field(None, alias="textValue")
     binary_value: SecretBytes | None = Field(None, alias="binaryValue")
@@ -86,6 +92,10 @@ class INewSecretVersion(BaseUpsertModel):
 
 
 class SecretPayload(BaseDomainModel):
+    """
+    Domain object that represents a payload for :class:`Secret`.
+    """
+
     version_id: str = Field(..., alias="versionId")
     entries: list[SecretPayloadEntry]  # todo: dynamic object with entry-attributes instead list?
 
@@ -119,6 +129,12 @@ class SecretPayload(BaseDomainModel):
 
 
 class SecretVersion(BaseDomainModel):
+    """
+    Domain object that represents a version from :class:`Secret`.
+    This object contains methods for call version commands.
+
+    """
+
     id: str
     status: str = "UNKNOWN"  # todo: enum
     description: str | None = None
@@ -147,6 +163,41 @@ class SecretVersion(BaseDomainModel):
 
 
 class Secret(BaseDomainModel):
+    """
+    A root domain model that represents Lockbox Secret.
+    This model contains commands (methods) for secret manipulate.
+
+    Usage::
+
+        # basic commands
+        secret.deactivate()
+        secret.activate()
+        secret.delete()
+
+        # get payload from Secret
+        secret_payload = secret.payload()
+        print(secret_payload["my_entry"])  # by default secret values is masked like ******
+        print(secret_payload["my_entry"].reveal_text_value())  # show real value
+
+        # get all secret versions and destruct olds
+        for version in secret.list_versions(iterator=True):
+            print(version)
+            if version.id != secret.current_version.id:
+                version.schedule_version_destruction()
+
+        # update a secret
+        new_data = IUpdateSecret(
+            update_mask="name,description",
+            name="new-secret-name",
+            description="My secret"
+        )
+        update_operation = secret.update(new_data)
+
+        if update_operation.done:  # or use secret.refresh()
+            print(update_operation.resource.name, update_operation.resource.description)
+
+    """
+
     id: str
     status: str = "UNKNOWN"  # todo: enum
     name: str | None = None
@@ -179,8 +230,14 @@ class Secret(BaseDomainModel):
         return self.client.delete_secret(self.id, **kwargs)
 
     def refresh(self, **kwargs) -> "Secret":
-        """Shortcut for get fresh data about this secret."""
-        return self.client.get_secret(self.id, **kwargs)
+        """Shortcut for refresh attributes for this secret."""
+        data = self.client.get_secret(self.id, **kwargs)
+
+        for attr, value in data.model_dump().items():
+            if value != getattr(self, attr):
+                setattr(self, attr, value)
+
+        return data
 
     def payload(self, version_id: str | None = None, **kwargs) -> Union["Operation", "YandexCloudError"]:
         return self.client.get_secret_payload(self.id, version_id, **kwargs)
