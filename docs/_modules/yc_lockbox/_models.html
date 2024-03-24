@@ -227,9 +227,12 @@
     <span class="n">model_config</span><span class="p">:</span> <span class="n">ConfigDict</span> <span class="o">=</span> <span class="n">ConfigDict</span><span class="p">(</span><span class="n">extra</span><span class="o">=</span><span class="s2">&quot;forbid&quot;</span><span class="p">,</span> <span class="n">populate_by_name</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
 
+<div class="viewcode-block" id="IamTokenResponse">
+<a class="viewcode-back" href="../../pages/models.html#yc_lockbox._models.IamTokenResponse">[docs]</a>
 <span class="k">class</span> <span class="nc">IamTokenResponse</span><span class="p">(</span><span class="n">BaseDomainModel</span><span class="p">):</span>
     <span class="n">token</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">alias</span><span class="o">=</span><span class="s2">&quot;iamToken&quot;</span><span class="p">)</span>
-    <span class="n">expires_at</span><span class="p">:</span> <span class="n">datetime</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">alias</span><span class="o">=</span><span class="s2">&quot;expiresAt&quot;</span><span class="p">)</span>
+    <span class="n">expires_at</span><span class="p">:</span> <span class="n">datetime</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">alias</span><span class="o">=</span><span class="s2">&quot;expiresAt&quot;</span><span class="p">)</span></div>
+
 
 
 <div class="viewcode-block" id="SecretPayloadEntry">
@@ -535,20 +538,31 @@
     <span class="n">next_page_token</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">alias</span><span class="o">=</span><span class="s2">&quot;nextPageToken&quot;</span><span class="p">)</span>
 
 
+<div class="viewcode-block" id="SecretsList">
+<a class="viewcode-back" href="../../pages/models.html#yc_lockbox._models.SecretsList">[docs]</a>
 <span class="k">class</span> <span class="nc">SecretsList</span><span class="p">(</span><span class="n">BasePaginatedResponse</span><span class="p">):</span>
-    <span class="n">secrets</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Secret</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">secrets</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Secret</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span></div>
 
 
+
+<div class="viewcode-block" id="SecretVersionsList">
+<a class="viewcode-back" href="../../pages/models.html#yc_lockbox._models.SecretVersionsList">[docs]</a>
 <span class="k">class</span> <span class="nc">SecretVersionsList</span><span class="p">(</span><span class="n">BasePaginatedResponse</span><span class="p">):</span>
-    <span class="n">versions</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">SecretVersion</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">versions</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">SecretVersion</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span></div>
 
 
+
+<div class="viewcode-block" id="YandexCloudError">
+<a class="viewcode-back" href="../../pages/models.html#yc_lockbox._models.YandexCloudError">[docs]</a>
 <span class="k">class</span> <span class="nc">YandexCloudError</span><span class="p">(</span><span class="n">BaseDomainModel</span><span class="p">):</span>
     <span class="n">code</span><span class="p">:</span> <span class="nb">int</span>
     <span class="n">message</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
-    <span class="n">details</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">details</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="kc">None</span></div>
 
 
+
+<div class="viewcode-block" id="Operation">
+<a class="viewcode-back" href="../../pages/models.html#yc_lockbox._models.Operation">[docs]</a>
 <span class="k">class</span> <span class="nc">Operation</span><span class="p">(</span><span class="n">BaseDomainModel</span><span class="p">):</span>
     <span class="nb">id</span><span class="p">:</span> <span class="nb">str</span>
     <span class="n">done</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
@@ -587,7 +601,8 @@
 
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">resource</span><span class="o">.</span><span class="n">inject_client</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">resource</span>
+        <span class="k">return</span> <span class="n">resource</span></div>
+
 </pre></div>
         </article>
       </div>

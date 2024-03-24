@@ -16,6 +16,17 @@ Domain models provide complete information about the resource, similar to aggreg
 .. autopydantic_model:: yc_lockbox._models.SecretPayloadEntry
 
 
+Paginated models
+^^^^^^^^^^^^^^^^
+
+Used when ``iterator=False``.
+
+.. autopydantic_model:: yc_lockbox._models.SecretsList
+
+.. autopydantic_model:: yc_lockbox._models.SecretVersionsList
+
+
+
 Upsert models
 -------------
 
@@ -28,3 +39,15 @@ Upsert models (interfaces) are designed for operations of creating new resources
 .. autopydantic_model:: yc_lockbox._models.INewSecretPayloadEntry
 
 .. autopydantic_model:: yc_lockbox._models.IUpdateSecret
+
+
+Common models
+-------------
+
+Other Yandex Cloud models related to Lockbox.
+
+.. autopydantic_model:: yc_lockbox._models.Operation
+
+.. autopydantic_model:: yc_lockbox._models.YandexCloudError
+
+.. autopydantic_model:: yc_lockbox._models.IamTokenResponse
