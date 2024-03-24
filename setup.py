@@ -70,7 +70,7 @@ def main() -> None:
         description="Yandex Lockbox client",
         long_description=build_description(),
         long_description_content_type="text/markdown",
-        url=metadata.get("__url__"),
+        url=meta.get("__url__"),
         python_requires=">=3.10",
         packages=find_packages(),
         install_requires=get_requirements(),
