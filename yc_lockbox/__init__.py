@@ -25,9 +25,17 @@ SOFTWARE.
 """
 
 from yc_lockbox._lockbox import YandexLockboxClient
-from yc_lockbox._models import Secret, INewSecretPayloadEntry, INewSecret, INewSecretVersion, IUpdateSecret
+from yc_lockbox._models import (
+    Secret,
+    INewSecretPayloadEntry,
+    INewSecret,
+    INewSecretVersion,
+    IUpdateSecret,
+    Operation,
+    YandexCloudError,
+)
 
-__version__ = "0.1.1"
+__version__ = "0.1.2"
 __author__ = "Akim Faskhutdinov"
 __author_email__ = "akimstrong@yandex.ru"
 __license__ = "MIT"
@@ -40,4 +48,6 @@ __all__ = [
     "INewSecretVersion",
     "IUpdateSecret",
     "YandexLockboxClient",
+    "Operation",
+    "YandexCloudError",
 ]

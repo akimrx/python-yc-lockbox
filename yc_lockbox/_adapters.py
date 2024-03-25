@@ -1,6 +1,6 @@
 import logging
 import requests
-from typing import Any
+from typing import Any, Type
 
 from yc_lockbox._abc import AbstractHTTPAdapter
 from yc_lockbox._models import YandexCloudError
@@ -17,7 +17,7 @@ class HTTPAdapter(AbstractHTTPAdapter):
     @staticmethod
     def parse_response(
         response: requests.Response,
-        response_model: T | None = None,
+        response_model: Type[T] | None = None,
     ) -> T | Any:
         """
         Parse response from Origin.
@@ -49,7 +49,7 @@ class HTTPAdapter(AbstractHTTPAdapter):
         json: dict[str, Any] | None = None,
         headers: dict[str, Any] | None = None,
         params: dict[str, Any] | None = None,
-        response_model: T | None = None,
+        response_model: Type[T] | None = None,
         raise_for_status: bool = True,
         **kwargs,
     ) -> T | Any:
@@ -90,7 +90,7 @@ class AsyncHTTPAdapter(AbstractHTTPAdapter):
     """
 
     @staticmethod
-    async def parse_response(response: requests.Response, response_model: T | None = None) -> T | Any:
+    async def parse_response(response: requests.Response, response_model: Type[T] | None = None) -> T | Any:
         """
         Parse response from Origin.
 
@@ -122,7 +122,7 @@ class AsyncHTTPAdapter(AbstractHTTPAdapter):
         json: dict[str, Any] | None = None,
         params: dict[str, Any] | None = None,
         headers: dict[str, Any] | None = None,
-        response_model: T | None = None,
+        response_model: Type[T] | None = None,
         raise_for_status: bool = True,
         **kwargs,
     ) -> T | Any:

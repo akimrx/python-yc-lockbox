@@ -44,7 +44,7 @@ class YandexAuthClient(AbstractYandexAuthClient):
         return HTTPAdapter
 
     def get_iam_token(self) -> str:
-        """Cacheable (per process session) method for get IAM token from Yandex Cloud."""
+        """Cacheable (in-memory, per instance) method for get IAM token from Yandex Cloud."""
         if self._credentials_type == CredentialsType.IAM_TOKEN:
             return self.credentials
 

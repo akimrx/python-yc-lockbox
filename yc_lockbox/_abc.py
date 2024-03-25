@@ -5,6 +5,7 @@ import enum
 import yc_lockbox._constants as C
 
 from abc import ABC, abstractmethod
+from functools import lru_cache
 from typing import Any, TypeVar
 from yc_lockbox._exceptions import InvalidCredentials
 
@@ -221,6 +222,7 @@ class AbstractYandexAuthClient(ABC):
             f"Invalid credentials. Allowed types: {CredentialsType.allowed_types(stringify=True)}"
         )
 
+    @lru_cache(maxsize=1)
     def _generate_jwt_for_sa(self, aud_path: str = "/iam/v1/tokens") -> str:
         """
         Prepare JWT for request IAM token from service account key.

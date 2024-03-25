@@ -3,6 +3,7 @@ from typing import Any, Iterator, Union
 from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field, SecretStr, SecretBytes, computed_field
 
+from yc_lockbox._constants import RpcError
 from yc_lockbox._abc import AbstractYandexLockboxClient
 from yc_lockbox._types import T
 
@@ -277,6 +278,16 @@ class YandexCloudError(BaseDomainModel):
     code: int
     message: str | None = None
     details: Any = None
+
+    @computed_field
+    @property
+    def error_type(self) -> RpcError:
+        try:
+            value = RpcError(self.code)
+        except ValueError:
+            value = None
+
+        return value
 
 
 class Operation(BaseDomainModel):
