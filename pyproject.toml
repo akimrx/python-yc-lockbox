@@ -16,6 +16,12 @@ filterwarnings = [
 [tool.coverage.run]
 # omit = []
 
+[tool.mypy]
+ignore_missing_imports = true
+strict_optional = true
+warn_return_any = true
+warn_unused_configs = true
+
 [tool.flake8]
 max-complexity = 15
 max-line-length = 119

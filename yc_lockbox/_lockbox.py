@@ -484,7 +484,7 @@ class AsyncYandexLockboxClient(AbstractYandexLockboxClient):
     """The same as :class:`YandexLockboxClient` but async."""
 
     def __init__(self, *args, **kwargs) -> None:
-        raise NotImplementedError
+        raise NotImplementedError  # pragma: no cover
 
 
 # TODO: implement
@@ -495,7 +495,7 @@ class YandexLockbox:
     """
 
     def __init__(self) -> None:
-        raise NotImplementedError
+        raise NotImplementedError  # pragma: no cover
 
 
 __all__ = ["AsyncYandexLockboxClient", "YandexLockboxClient", "YandexLockbox"]

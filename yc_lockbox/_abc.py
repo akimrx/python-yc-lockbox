@@ -47,7 +47,7 @@ class AbstractHTTPAdapter(ABC):
         raise_for_status: bool = True,
         **kwargs,
     ) -> Any:
-        raise NotImplementedError
+        raise NotImplementedError  # pragma: no cover
 
 
 class AbstractYandexLockboxClient(ABC):
@@ -64,35 +64,35 @@ class AbstractYandexLockboxClient(ABC):
 
     @abstractmethod
     def activate_secret(self, *args, **kwargs) -> T | Any:
-        raise NotImplementedError
+        raise NotImplementedError  # pragma: no cover
 
     @abstractmethod
     def add_secret_version(self, *args, **kwargs) -> T | Any:
-        raise NotImplementedError
+        raise NotImplementedError  # pragma: no cover
 
     @abstractmethod
     def create_secret(self, *args, **kwargs) -> T:
-        raise NotImplementedError
+        raise NotImplementedError  # pragma: no cover
 
     @abstractmethod
     def cancel_secret_version_destruction(self, *args, **kwargs) -> T | Any:
-        raise NotImplementedError
+        raise NotImplementedError  # pragma: no cover
 
     @abstractmethod
     def deactivate_secret(self, *args, **kwargs) -> T | Any:
-        raise NotImplementedError
+        raise NotImplementedError  # pragma: no cover
 
     @abstractmethod
     def delete_secret(self, *args, **kwargs) -> Any:
-        raise NotImplementedError
+        raise NotImplementedError  # pragma: no cover
 
     @abstractmethod
     def get_secret(self, secret_id: str, *args, **kwargs) -> T:
-        raise NotImplementedError
+        raise NotImplementedError  # pragma: no cover
 
     @abstractmethod
     def get_secret_payload(self, *args, **kwargs) -> T:
-        raise NotImplementedError
+        raise NotImplementedError  # pragma: no cover
 
     @abstractmethod
     def list_secrets(self, *args, **kwargs) -> list[T]:
@@ -100,31 +100,31 @@ class AbstractYandexLockboxClient(ABC):
 
     @abstractmethod
     def list_secret_access_bindings(self, *args, **kwargs) -> T | Any:
-        raise NotImplementedError
+        raise NotImplementedError  # pragma: no cover
 
     @abstractmethod
     def list_secret_operations(self, *args, **kwargs) -> list[T] | list[Any]:
-        raise NotImplementedError
+        raise NotImplementedError  # pragma: no cover
 
     @abstractmethod
     def list_secret_versions(self, *args, **kwargs) -> list[T] | list[Any]:
-        raise NotImplementedError
+        raise NotImplementedError  # pragma: no cover
 
     @abstractmethod
     def schedule_secret_version_destruction(self, *args, **kwargs) -> T | Any:
-        raise NotImplementedError
+        raise NotImplementedError  # pragma: no cover
 
     @abstractmethod
     def set_secret_access_bindings(self, *args, **kwargs) -> T | Any:
-        raise NotImplementedError
+        raise NotImplementedError  # pragma: no cover
 
     @abstractmethod
     def update_secret(self, *args, **kwargs) -> T:
-        raise NotImplementedError
+        raise NotImplementedError  # pragma: no cover
 
     @abstractmethod
     def update_secret_access_bindings(self, *args, **kwargs) -> T | Any:
-        raise NotImplementedError
+        raise NotImplementedError  # pragma: no cover
 
 
 class AbstractYandexAuthClient(ABC):
@@ -147,12 +147,12 @@ class AbstractYandexAuthClient(ABC):
     @abstractmethod
     def adapter(self) -> AbstractHTTPAdapter:
         """An abstract property that returns sync or async adapter for HTTP requests."""
-        raise NotImplementedError
+        raise NotImplementedError  # pragma: no cover
 
     @abstractmethod
     def get_iam_token(self) -> str:
         """An abstract method for get IAM token from Yandex.Cloud."""
-        raise NotImplementedError
+        raise NotImplementedError  # pragma: no cover
 
     def get_auth_headers(self) -> dict[str, str]:
         """Returns auth headers as dict."""
@@ -230,8 +230,8 @@ class AbstractYandexAuthClient(ABC):
         :param aud_path: URL path for JWT payload ``aud``.
         """
 
-        if self._credentials_type != CredentialsType.SERVICE_ACCOUNT:
-            raise InvalidCredentials
+        if self._credentials_type != CredentialsType.SERVICE_ACCOUNT or not isinstance(self.credentials, dict):
+            raise InvalidCredentials(f"Can't generate JWT, invalid credentials type: {self._credentials_type}")
 
         now = int(time.time())
         sa_id = self.credentials.get("service_account_id")

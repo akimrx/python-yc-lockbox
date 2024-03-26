@@ -6,6 +6,7 @@ from pydantic import BaseModel, ConfigDict, Field, SecretStr, SecretBytes, compu
 from yc_lockbox._constants import RpcError
 from yc_lockbox._abc import AbstractYandexLockboxClient
 from yc_lockbox._types import T
+from yc_lockbox._exceptions import LockboxError
 
 
 logger = logging.getLogger(__name__)
@@ -15,7 +16,7 @@ class BaseDomainModel(BaseModel):
     client: AbstractYandexLockboxClient | None = Field(
         None, description="Injected lockbox client for call model commands."
     )
-    model_config: ConfigDict = ConfigDict(extra="ignore", arbitrary_types_allowed=True)
+    model_config: ConfigDict = ConfigDict(extra="ignore", arbitrary_types_allowed=True)  # type: ignore[union-attr]
 
     def inject_client(self, client: AbstractYandexLockboxClient) -> None:
         """
@@ -25,9 +26,13 @@ class BaseDomainModel(BaseModel):
         """
         self.client = client
 
+    def _raise_when_empty_client(self) -> None:
+        if self.client is None:  # pragma: no cover
+            raise LockboxError("Lockbox client didn't injected to this resource.")
+
 
 class BaseUpsertModel(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid", populate_by_name=True)
+    model_config: ConfigDict = ConfigDict(extra="forbid", populate_by_name=True)  # type: ignore[union-attr]
 
 
 class IamTokenResponse(BaseDomainModel):
@@ -42,7 +47,7 @@ class SecretPayloadEntry(BaseDomainModel):
 
     key: str
     text_value: SecretStr | None = Field(None, alias="textValue")
-    binary_value: SecretBytes | None = Field(None, alias="binaryValue")
+    binary_value: SecretStr | SecretBytes | None = Field(None, alias="binaryValue")
 
     def reveal_text_value(self) -> str:
         """Reveal a text value."""
@@ -150,16 +155,19 @@ class SecretVersion(BaseDomainModel):
 
     def cancel_version_destruction(self, **kwargs) -> Union["Operation", "YandexCloudError"]:
         """Shortcut for cancel destruction for this version."""
+        self._raise_when_empty_client()
         return self.client.cancel_secret_version_destruction(self.secret_id, self.id, **kwargs)
 
     def payload(self, **kwargs) -> Union["SecretPayload", "YandexCloudError"]:
         """Get payload from the current secret.."""
+        self._raise_when_empty_client()
         return self.client.get_secret_payload(self.secret_id, self.id, **kwargs)
 
     def schedule_version_destruction(
         self, pending_period: int = 604800, **kwargs
     ) -> Union["Operation", "YandexCloudError"]:
         """Shortcut for schedule descruction for this version."""
+        self._raise_when_empty_client()
         return self.client.schedule_secret_version_destruction(self.secret_id, self.id, pending_period, **kwargs)
 
 
@@ -212,26 +220,32 @@ class Secret(BaseDomainModel):
 
     def activate(self, **kwargs) -> Union["Operation", "YandexCloudError"]:
         """Shortcut for activate the current secret."""
+        self._raise_when_empty_client()
         return self.client.activate_secret(self.id, **kwargs)
 
     def add_version(self, version: INewSecretVersion, **kwargs) -> Union["Operation", "YandexCloudError"]:
         """Shortcut for add a new version to the current secret."""
+        self._raise_when_empty_client()
         return self.client.add_secret_version(self.id, version, **kwargs)
 
     def cancel_version_destruction(self, version_id: str, **kwargs) -> Union["Operation", "YandexCloudError"]:
         """Shortcut for cancel destruction specified version of the current secret."""
+        self._raise_when_empty_client()
         return self.client.cancel_secret_version_destruction(self.id, version_id, **kwargs)
 
     def deactivate(self, **kwargs) -> Union["Operation", "YandexCloudError"]:
         """Shortcut for deactivate the current secret."""
+        self._raise_when_empty_client()
         return self.client.deactivate_secret(self.id, **kwargs)
 
     def delete(self, **kwargs) -> Union["Operation", "YandexCloudError"]:
         """Shortcut for delete the current secret."""
+        self._raise_when_empty_client()
         return self.client.delete_secret(self.id, **kwargs)
 
     def refresh(self, **kwargs) -> "Secret":
         """Shortcut for refresh attributes for this secret."""
+        self._raise_when_empty_client()
         data = self.client.get_secret(self.id, **kwargs)
 
         for attr, value in data.model_dump().items():
@@ -241,12 +255,14 @@ class Secret(BaseDomainModel):
         return data
 
     def payload(self, version_id: str | None = None, **kwargs) -> Union["Operation", "YandexCloudError"]:
+        self._raise_when_empty_client()
         return self.client.get_secret_payload(self.id, version_id, **kwargs)
 
     def list_versions(
         self, page_size: int = 100, page_token: str | None = None, iterator: bool = False, **kwargs
     ) -> Union["SecretVersionsList", Iterator["SecretVersion"], "YandexCloudError"]:
         """Shortcut for list all available versions of the current secret."""
+        self._raise_when_empty_client()
         return self.client.list_secret_versions(
             self.id, page_size=page_size, page_token=page_token, iterator=iterator, **kwargs
         )
@@ -255,10 +271,12 @@ class Secret(BaseDomainModel):
         self, version_id: str, pending_period: int = 604800, **kwargs
     ) -> Union["Operation", "YandexCloudError"]:
         """Shortcut for schedule destruction for specified version of the current secret."""
+        self._raise_when_empty_client()
         return self.client.schedule_secret_version_destruction(self.id, version_id, pending_period, **kwargs)
 
     def update(self, data: IUpdateSecret, **kwargs) -> Union["Operation", "YandexCloudError"]:
         """Shortcut for update current secret."""
+        self._raise_when_empty_client()
         return self.client.update_secret(self.id, data, **kwargs)
 
 

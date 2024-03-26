@@ -549,7 +549,7 @@ This object contains methods for call version commands.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Fields<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><a class="reference internal" href="#yc_lockbox._models.SecretPayloadEntry.binary_value" title="yc_lockbox._models.SecretPayloadEntry.binary_value"><code class="xref py py-obj docutils literal notranslate"><span class="pre">binary_value</span> <span class="pre">(pydantic.types.SecretBytes</span> <span class="pre">|</span> <span class="pre">None)</span></code></a></p></li>
+<li><p><a class="reference internal" href="#yc_lockbox._models.SecretPayloadEntry.binary_value" title="yc_lockbox._models.SecretPayloadEntry.binary_value"><code class="xref py py-obj docutils literal notranslate"><span class="pre">binary_value</span> <span class="pre">(pydantic.types.SecretStr</span> <span class="pre">|</span> <span class="pre">pydantic.types.SecretBytes</span> <span class="pre">|</span> <span class="pre">None)</span></code></a></p></li>
 <li><p><a class="reference internal" href="#yc_lockbox._models.SecretPayloadEntry.key" title="yc_lockbox._models.SecretPayloadEntry.key"><code class="xref py py-obj docutils literal notranslate"><span class="pre">key</span> <span class="pre">(str)</span></code></a></p></li>
 <li><p><a class="reference internal" href="#yc_lockbox._models.SecretPayloadEntry.text_value" title="yc_lockbox._models.SecretPayloadEntry.text_value"><code class="xref py py-obj docutils literal notranslate"><span class="pre">text_value</span> <span class="pre">(pydantic.types.SecretStr</span> <span class="pre">|</span> <span class="pre">None)</span></code></a></p></li>
 </ul>
@@ -557,7 +557,7 @@ This object contains methods for call version commands.</p>
 </dl>
 <dl class="py attribute pydantic_field">
 <dt class="sig sig-object py" id="yc_lockbox._models.SecretPayloadEntry.binary_value">
-<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">binary_value</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">SecretBytes</span></code> <span class="pre">|</span> <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"> <span class="pre">(alias</span> <span class="pre">'binaryValue')</span></em><a class="headerlink" href="#yc_lockbox._models.SecretPayloadEntry.binary_value" title="Link to this definition">#</a></dt>
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">binary_value</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">SecretStr</span></code> <span class="pre">|</span> <code class="xref py py-class docutils literal notranslate"><span class="pre">SecretBytes</span></code> <span class="pre">|</span> <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"> <span class="pre">(alias</span> <span class="pre">'binaryValue')</span></em><a class="headerlink" href="#yc_lockbox._models.SecretPayloadEntry.binary_value" title="Link to this definition">#</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute pydantic_field">
@@ -899,6 +899,11 @@ Otherwise returns None.</p>
 <em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">message</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code> <span class="pre">|</span> <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#yc_lockbox._models.YandexCloudError.message" title="Link to this definition">#</a></dt>
 <dd></dd></dl>
 
+<dl class="py property">
+<dt class="sig sig-object py" id="yc_lockbox._models.YandexCloudError.error_type">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">error_type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">RpcError</span></em><a class="headerlink" href="#yc_lockbox._models.YandexCloudError.error_type" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
 </dd></dl>
 
 <dl class="py class pydantic_model">
@@ -1099,6 +1104,7 @@ Otherwise returns None.</p>
 <li><a class="reference internal" href="#yc_lockbox._models.YandexCloudError.code"><code class="docutils literal notranslate"><span class="pre">YandexCloudError.code</span></code></a></li>
 <li><a class="reference internal" href="#yc_lockbox._models.YandexCloudError.details"><code class="docutils literal notranslate"><span class="pre">YandexCloudError.details</span></code></a></li>
 <li><a class="reference internal" href="#yc_lockbox._models.YandexCloudError.message"><code class="docutils literal notranslate"><span class="pre">YandexCloudError.message</span></code></a></li>
+<li><a class="reference internal" href="#yc_lockbox._models.YandexCloudError.error_type"><code class="docutils literal notranslate"><span class="pre">YandexCloudError.error_type</span></code></a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#yc_lockbox._models.IamTokenResponse"><code class="docutils literal notranslate"><span class="pre">IamTokenResponse</span></code></a><ul>
@@ -1119,7 +1125,7 @@ Otherwise returns None.</p>
       
     </aside>
   </div>
-</div><script src="../_static/documentation_options.js?v=01f34227"></script>
+</div><script src="../_static/documentation_options.js?v=360bc84d"></script>
     <script src="../_static/doctools.js?v=888ff710"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/scripts/furo.js?v=32e29ea5"></script>
