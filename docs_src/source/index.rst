@@ -8,6 +8,19 @@ Yandex Lockbox Python client documentation
 
 Release v\ |release|
 
+.. image:: https://img.shields.io/pypi/pyversions/yc-lockbox.svg
+   :target: https://pypi.org/project/yc-lockbox/
+
+.. image:: https://img.shields.io/pypi/v/yc-lockbox.svg
+   :target: https://pypi.org/project/yc-lockbox/
+
+.. image:: https://codecov.io/gh/akimrx/python-yc-lockbox/branch/master/graph/badge.svg
+   :target: https://github.com/akimrx/python-yc-lockbox
+
+.. image:: https://github.com/akimrx/python-yc-lockbox/workflows/Tests/badge.svg
+   :target: https://github.com/akimrx/python-yc-lockbox
+
+
 This library is a simple client for working with `Yandex Lockbox <https://cloud.yandex.ru/en/docs/lockbox/>`_ over `REST API <https://cloud.yandex.ru/en/docs/lockbox/api-ref/>`_, simplifying work with secrets and allowing you to work with them in the OOP paradigm.
 
 ------------------------------
