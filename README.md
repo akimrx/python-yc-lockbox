@@ -62,6 +62,12 @@ cd python-yc-lockbox
 make install
 ```
 
+For async mode support use
+
+```
+pip install yc-lockbox[aio]
+```
+
 
 ## Usage
 
