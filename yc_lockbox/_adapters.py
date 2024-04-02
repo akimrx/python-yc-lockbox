@@ -149,6 +149,9 @@ class AsyncHTTPAdapter(AbstractHTTPAdapter):
                 "or use ``pip install yc-lockbox[aio]`` for resolve it."
             )
 
+        if params is not None:
+            params = {k: v for k, v in params.items() if v is not None}  # aiohttp don't like NoneType
+
         async with aiohttp.ClientSession() as session:
             async with session.request(
                 method=method, url=url, data=data, json=json, headers=headers, params=params, **kwargs
