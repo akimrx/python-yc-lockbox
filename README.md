@@ -7,6 +7,8 @@
 
 This library is a simple client for working with **[Yandex Lockbox](https://cloud.yandex.ru/en/docs/lockbox/)** over [REST API](https://cloud.yandex.ru/en/docs/lockbox/api-ref/), simplifying work with secrets and allowing you to work with them in the OOP paradigm.
 
+Supports two modes: synchronous and asynchronous.
+
 **[Full library documentation link](https://akimrx.github.io/python-yc-lockbox/)**
 
 **Supported Python versions**:
@@ -23,6 +25,11 @@ This library is a simple client for working with **[Yandex Lockbox](https://clou
 * [Requests](https://github.com/psf/requests)
 
 
+**Extra dependencies:**
+
+* [aiohttp](https://github.com/aio-libs/aiohttp)
+
+
 **Currently, the following operations are not supported by the library:**
 
 * List secret access bindings
@@ -34,7 +41,7 @@ This library is a simple client for working with **[Yandex Lockbox](https://clou
 **In the near future release:**
 
 - [x] Tests
-- [ ] Async client implementation
+- [x] Async client implementation
 - [ ] Implement access bindings methods and view operations
 - [ ] Ansible action and lookup plugins
 
@@ -189,4 +196,51 @@ for secret in lockbox.list_secrets(folder_id="b1xxxxxxxxxx", iterator=True):
             version.schedule_version_destruction()
             version.cancel_version_destruction()
 
+```
+
+## Async mode
+
+The client supports asynchronous mode using the aiohttp library. The signature of the methods does not differ from the synchronous implementation.
+
+
+Just import async client:
+
+```python
+
+from yc_lockbox import AsyncYandexLockboxClient
+
+lockbox = AsyncYandexLockboxClient("oauth_or_iam_token")
+```
+
+Alternative:
+
+```python
+
+from yc_lockbox import YandexLockboxFacade
+
+lockbox = YandexLockboxFacade("oauth_or_iam_token", enable_async=True).client
+```
+
+Example usage:
+
+```python
+secret: Secret = await lockbox.get_secret("e6qxxxxxxxxxx")
+payload = await secret.payload()
+print(payload.entries)  # list of SecretPayloadEntry objects
+
+# Direct access
+
+entry = payload["secret_entry_1"]  # or payload.get("secret_entry_1")
+
+print(entry.text_value)  # return MASKED value like ***********
+print(entry.reveal_text_value())  # similar to entry.text_value.get_secret_value()
+
+# Async iterators
+
+secret_versions = await secret.list_versions(iterator=True)
+
+async for version in secret_versions:
+    if version.id != secret.current_version.id:
+        await version.schedule_version_destruction()
+        await version.cancel_version_destruction()
 ```

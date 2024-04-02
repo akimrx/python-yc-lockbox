@@ -1,11 +1,11 @@
 import logging
-from typing import Any, Iterator, Union
+from typing import Any, AsyncGenerator, Iterator, Union
 from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field, SecretStr, SecretBytes, computed_field
 
 from yc_lockbox._constants import RpcError
 from yc_lockbox._abc import AbstractYandexLockboxClient
-from yc_lockbox._types import T
+from yc_lockbox._types import T, SecretVersionsResponse
 from yc_lockbox._exceptions import LockboxError
 
 
@@ -243,16 +243,30 @@ class Secret(BaseDomainModel):
         self._raise_when_empty_client()
         return self.client.delete_secret(self.id, **kwargs)
 
+    async def _async_refresh(self, **kwargs) -> "Secret":
+        data = await self.client.get_secret(self.id, **kwargs)
+        self._update_attributes(data)
+        return self
+
+    def _sync_refresh(self, **kwargs) -> "Secret":
+        data = self.client.get_secret(self.id, **kwargs)
+        self._update_attributes(data)
+        return self
+
+    def _update_attributes(self, data) -> None:
+        """Method for update model attributes after refresh."""
+        for attr, value in data.model_dump().items():
+            if value != getattr(self, attr, None):
+                setattr(self, attr, value)
+
     def refresh(self, **kwargs) -> "Secret":
         """Shortcut for refresh attributes for this secret."""
         self._raise_when_empty_client()
-        data = self.client.get_secret(self.id, **kwargs)
 
-        for attr, value in data.model_dump().items():
-            if value != getattr(self, attr):
-                setattr(self, attr, value)
+        if hasattr(self.client, "enable_async") and self.client.enable_async:
+            return self._async_refresh(**kwargs)
 
-        return data
+        return self._sync_refresh(**kwargs)
 
     def payload(self, version_id: str | None = None, **kwargs) -> Union["Operation", "YandexCloudError"]:
         self._raise_when_empty_client()
@@ -260,7 +274,7 @@ class Secret(BaseDomainModel):
 
     def list_versions(
         self, page_size: int = 100, page_token: str | None = None, iterator: bool = False, **kwargs
-    ) -> Union["SecretVersionsList", Iterator["SecretVersion"], "YandexCloudError"]:
+    ) -> SecretVersionsResponse:
         """Shortcut for list all available versions of the current secret."""
         self._raise_when_empty_client()
         return self.client.list_secret_versions(

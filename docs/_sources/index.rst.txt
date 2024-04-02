@@ -225,6 +225,56 @@ Other operations with secret
 
 
 
+Async mode
+----------
+
+The client supports asynchronous mode using the aiohttp library. The signature of the methods does not differ from the synchronous implementation.
+
+
+Just import async client:
+
+.. code-block:: python
+
+   from yc_lockbox import AsyncYandexLockboxClient
+
+   lockbox = AsyncYandexLockboxClient("oauth_or_iam_token")
+
+
+
+Alternative:
+
+.. code-block:: python
+
+   from yc_lockbox import YandexLockboxFacade
+
+   lockbox = YandexLockboxFacade("oauth_or_iam_token", enable_async=True).client
+
+
+Example usage:
+
+.. code-block:: python
+
+   secret: Secret = await lockbox.get_secret("e6qxxxxxxxxxx")
+   payload = await secret.payload()
+   print(payload.entries)  # list of SecretPayloadEntry objects
+
+   # Direct access
+
+   entry = payload["secret_entry_1"]  # or payload.get("secret_entry_1")
+
+   print(entry.text_value)  # return MASKED value like ***********
+   print(entry.reveal_text_value())  # similar to entry.text_value.get_secret_value()
+
+   # Async iterators
+
+   secret_versions = await secret.list_versions(iterator=True)
+
+   async for version in secret_versions:
+      if version.id != secret.current_version.id:
+         await version.schedule_version_destruction()
+         await version.cancel_version_destruction()
+
+
 
 Modules
 -------

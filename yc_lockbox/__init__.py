@@ -24,7 +24,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 """
 
-from yc_lockbox._lockbox import YandexLockboxClient
+from yc_lockbox._lockbox import AsyncYandexLockboxClient, YandexLockboxClient, YandexLockboxFacade
 from yc_lockbox._models import (
     Secret,
     INewSecretPayloadEntry,
@@ -35,7 +35,7 @@ from yc_lockbox._models import (
     YandexCloudError,
 )
 
-__version__ = "0.1.3"
+__version__ = "0.2.0"
 __author__ = "Akim Faskhutdinov"
 __author_email__ = "akimstrong@yandex.ru"
 __license__ = "MIT"
@@ -47,7 +47,9 @@ __all__ = [
     "INewSecret",
     "INewSecretVersion",
     "IUpdateSecret",
+    "AsyncYandexLockboxClient",
     "YandexLockboxClient",
+    "YandexLockboxFacade",
     "Operation",
     "YandexCloudError",
 ]

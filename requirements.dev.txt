@@ -1,3 +1,4 @@
+aioresponses
 bandit==1.7.*
 black==24.*
 Faker==23.*
