@@ -34,7 +34,7 @@ This library is a simple client for working with **[Yandex Lockbox](https://clou
 **In the near future release:**
 
 - [x] Tests
-- [ ] Async client implementation
+- [x] Async client implementation
 - [ ] Implement access bindings methods and view operations
 - [ ] Ansible action and lookup plugins
 
