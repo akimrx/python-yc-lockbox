@@ -988,6 +988,11 @@ class YandexLockboxFacade:  # pragma: no cover
                 payload_lockbox_base_url=payload_lockbox_base_url,
             )
 
+    @property
+    def client(self) -> AbstractYandexLockboxClient:
+        """Returns initialized Lockbox client."""
+        return self._client
+
     def __getattr__(self, name):
         """Dynamically delegate method calls to the appropriate client."""
 
